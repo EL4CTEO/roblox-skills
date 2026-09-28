@@ -1,6 +1,6 @@
 {
   "name": "roblox-skills",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "23 validated, up-to-date Agent Skills for Roblox development: modern Luau, architecture, networking, security, data stores, monetization, UI, input, physics, characters, NPC AI, performance, tooling, testing, Open Cloud, Studio MCP, audio, chat, teleports, analytics, world building, game systems, and code review.",
   "author": {
     "name": "EL4CTEO"

@@ -4,26 +4,26 @@
 #   ./scripts/install.sh [options] [skill ...]
 #
 # Options:
-#   -a, --agent NAME   Target agent (repeatable). One of:
-#                        agents    .agents/skills   (Codex, Gemini CLI, GitHub Copilot, OpenCode, Cursor) [default]
-#                        claude    .claude/skills   (Claude Code; also read by OpenCode and Copilot)
-#                        opencode  .opencode/skills (project) / ~/.config/opencode/skills (global)
-#                        gemini    .gemini/skills
-#                        copilot   .github/skills (project) / ~/.copilot/skills (global)
+#   -a, --agent NAME   Target agent (repeatable). Default: agents (.agents/skills, the shared folder
+#                      read by Codex, Cursor, Gemini CLI, Copilot, OpenCode, Amp, Cline and more).
+#                      Others: claude, cursor, opencode, gemini, copilot, windsurf, roo, kiro, junie,
+#                      goose, qwen, continue, crush, trae, augment, openhands, ... (see --list-agents).
 #   -g, --global       Install for your user (home directory) instead of a project.
 #   -p, --project DIR  Project directory to install into (default: current directory).
 #   -l, --link         Symlink instead of copying (updates when you `git pull` this repo).
 #   -f, --force        Replace existing skills with the same name.
+#       --list-agents  Show every supported agent and its skill directories.
 #   -h, --help         Show this help.
 #
 # Examples:
 #   ./scripts/install.sh --agent claude --global
 #   ./scripts/install.sh --project ~/games/my-obby roblox-luau roblox-security
-#   ./scripts/install.sh --agent agents --agent claude --link --global
+#   ./scripts/install.sh --agent agents --agent windsurf --link --global
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SKILLS_DIR="$ROOT/skills"
+AGENTS_TSV="$ROOT/scripts/agents.tsv"
 
 agents=()
 global=false
@@ -32,7 +32,14 @@ link=false
 force=false
 selected=()
 
-usage() { sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,22p' "$0" | sed 's/^# \{0,1\}//'; }
+
+list_agents() {
+	printf '%-12s %-26s %-34s %s\n' AGENT PROJECT GLOBAL TOOLS
+	grep -v '^#' "$AGENTS_TSV" | while IFS=$'\t' read -r id _ proj glob tools; do
+		printf '%-12s %-26s %-34s %s\n' "$id" "$proj" "$glob" "$tools"
+	done
+}
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -41,6 +48,7 @@ while [[ $# -gt 0 ]]; do
 		-p|--project) project="$2"; shift 2 ;;
 		-l|--link) link=true; shift ;;
 		-f|--force) force=true; shift ;;
+		--list-agents) list_agents; exit 0 ;;
 		-h|--help) usage; exit 0 ;;
 		-*) echo "Unknown option: $1" >&2; usage; exit 1 ;;
 		*) selected+=("$1"); shift ;;
@@ -49,27 +57,22 @@ done
 
 [[ ${#agents[@]} -eq 0 ]] && agents=("agents")
 
+# Print the skills directory for an agent id or alias; fail if unknown.
 target_dir() {
-	local agent="$1"
-	if $global; then
-		case "$agent" in
-			agents) echo "$HOME/.agents/skills" ;;
-			claude) echo "$HOME/.claude/skills" ;;
-			opencode) echo "${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills" ;;
-			gemini) echo "$HOME/.gemini/skills" ;;
-			copilot) echo "$HOME/.copilot/skills" ;;
-			*) return 1 ;;
-		esac
-	else
-		case "$agent" in
-			agents) echo "$project/.agents/skills" ;;
-			claude) echo "$project/.claude/skills" ;;
-			opencode) echo "$project/.opencode/skills" ;;
-			gemini) echo "$project/.gemini/skills" ;;
-			copilot) echo "$project/.github/skills" ;;
-			*) return 1 ;;
-		esac
-	fi
+	local agent="$1" id aliases proj glob _tools
+	while IFS=$'\t' read -r id aliases proj glob _tools; do
+		[[ "$id" == \#* || -z "$id" ]] && continue
+		if [[ "$agent" == "$id" || ",$aliases," == *",$agent,"* ]]; then
+			if $global; then
+				glob="${glob/#\~/$HOME}"
+				echo "${glob/#\$CONFIG/${XDG_CONFIG_HOME:-$HOME/.config}}"
+			else
+				echo "$project/$proj"
+			fi
+			return 0
+		fi
+	done <"$AGENTS_TSV"
+	return 1
 }
 
 if [[ ${#selected[@]} -eq 0 ]]; then
@@ -87,7 +90,7 @@ done
 
 for agent in "${agents[@]}"; do
 	if ! dest="$(target_dir "$agent")"; then
-		echo "Unknown agent: $agent" >&2
+		echo "Unknown agent: $agent (run with --list-agents)" >&2
 		exit 1
 	fi
 	mkdir -p "$dest"
@@ -116,8 +119,8 @@ done
 cat <<'EOF'
 
 Done. Restart your agent (or start a new session) so it discovers the skills.
-Tip: agents like OpenCode and GitHub Copilot read several directories; install to one of them only
-to avoid duplicate skills. Claude Code users can also install the plugin:
+Tip: many agents read several directories (for example .agents/skills and their own); install to one
+of them only to avoid duplicate skills. Claude Code users can also install the plugin:
   /plugin marketplace add EL4CTEO/roblox-skills
   /plugin install roblox-skills@roblox-skills
 EOF

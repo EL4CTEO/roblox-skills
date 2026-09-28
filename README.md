@@ -7,7 +7,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 23 [Agent Skills](https://agentskills.io) that keep AI agents' Roblox code current, secure, and
-correct. They work with Claude Code, OpenCode, Codex, Cursor, Gemini CLI, GitHub Copilot, and Roblox
+correct. They work with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, GitHub Copilot, Windsurf,
+Cline, Roo Code, Kiro, Goose, Amp, JetBrains Junie, and [many more](docs/agents.md), plus Roblox
 Studio Assistant.
 
 - **Current**: checked against Roblox's API reference (Studio 0.740, September 2026). No `wait()`,
@@ -26,16 +27,23 @@ Studio Assistant.
 /plugin install roblox-skills@roblox-skills
 ```
 
-**Other agents**
+**Any other agent** (needs Node.js)
+
+```bash
+npx skills add EL4CTEO/roblox-skills                            # choose agents interactively
+npx skills add EL4CTEO/roblox-skills -a cursor -a windsurf -y   # or name them
+```
+
+**Without Node.js**
 
 ```bash
 git clone https://github.com/EL4CTEO/roblox-skills.git && cd roblox-skills
-./scripts/install.sh --project /path/to/game       # .agents/skills (Codex, Gemini, Copilot, OpenCode, Cursor)
-./scripts/install.sh --agent claude --global       # ~/.claude/skills
+./scripts/install.sh --project /path/to/game       # .agents/skills (Codex, Cursor, Gemini, Copilot, OpenCode, Amp, ...)
+./scripts/install.sh --agent windsurf --global     # or claude, roo, kiro, goose, junie, qwen, ...
 ```
 
-`--agent` also accepts `opencode`, `gemini`, and `copilot`. Add `--link` to symlink the skills so
-`git pull` updates them. On Windows, use `scripts\install.ps1`.
+[docs/agents.md](docs/agents.md) lists every agent id and folder. Add `--link` to symlink the skills
+so `git pull` updates them. On Windows, use `scripts\install.ps1 -Agent windsurf`.
 
 **Roblox Studio Assistant**: download `roblox-assistant-skills.zip` from the
 [latest release](https://github.com/EL4CTEO/roblox-skills/releases/latest), or run

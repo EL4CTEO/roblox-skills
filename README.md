@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.svg" alt="Roblox Skills logo" width="128" height="128"></p>
+
 # Roblox Skills for AI Agents
 
 [![Validate](https://github.com/EL4CTEO/roblox-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/EL4CTEO/roblox-skills/actions/workflows/validate.yml)

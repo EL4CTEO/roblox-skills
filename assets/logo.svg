@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-labelledby="title">
+  <title id="title">Roblox Skills</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E1B4B"/>
+      <stop offset="1" stop-color="#3B0764"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+
+  <!-- Isometric building block -->
+  <g stroke="#1E1B4B" stroke-width="2" stroke-linejoin="round">
+    <path d="M60 38 L92 56 L60 74 L28 56 Z" fill="#C7D2FE"/>
+    <path d="M28 56 L60 74 L60 110 L28 92 Z" fill="#818CF8"/>
+    <path d="M60 74 L92 56 L92 92 L60 110 Z" fill="#4F46E5"/>
+  </g>
+
+  <!-- Code brackets on the block's front faces: "< >" -->
+  <g fill="none" stroke="#EEF2FF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 80 L39 87 L49 96"/>
+    <path d="M71 96 L81 87 L71 80"/>
+  </g>
+
+  <!-- AI spark -->
+  <path d="M100 14 C101.6 24 104 26.4 114 28 C104 29.6 101.6 32 100 42 C98.4 32 96 29.6 86 28 C96 26.4 98.4 24 100 14 Z" fill="url(#spark)"/>
+  <path d="M81 30 C81.7 34 82.9 35.3 87 36 C82.9 36.7 81.7 38 81 42 C80.3 38 79.1 36.7 75 36 C79.1 35.3 80.3 34 81 30 Z" fill="#FDE68A"/>
+</svg>

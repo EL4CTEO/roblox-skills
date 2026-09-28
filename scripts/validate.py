@@ -15,6 +15,7 @@ Checks
        - does not use APIs that Roblox has deprecated (curated list below, from the engine API reference).
      Use ```luau nocheck only for deliberately-wrong examples ("don't do this").
   4. Code fences must declare a language; Roblox code must be tagged `luau`, not `lua`.
+  5. scripts/agents.tsv (read by the installers) is well formed and docs/agents.md lists every agent.
 
 Usage: python3 scripts/validate.py [--no-luau] [--fix-format]
 Tools: run scripts/setup-tools.sh once (installs into .tools/), or set LUAU_LSP, STYLUA, ROBLOX_DEFS.
@@ -488,6 +489,28 @@ def fix_format(blocks: list[Block]) -> int:
     return 0
 
 
+def check_agents(report: Report) -> None:
+    tsv = ROOT / "scripts" / "agents.tsv"
+    doc = (ROOT / "docs" / "agents.md").read_text(encoding="utf-8")
+    seen: set[str] = set()
+    for n, line in enumerate(tsv.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip() or line.startswith("#"):
+            continue
+        cols = line.split("\t")
+        if len(cols) != 5 or not all(cols):
+            report.err(tsv, n, "expected 5 non-empty tab-separated columns")
+            continue
+        agent, aliases, project, global_dir, _tools = cols
+        for name in [agent] + ([] if aliases == "-" else aliases.split(",")):
+            if not NAME_RE.match(name) or name in seen:
+                report.err(tsv, n, f"agent id or alias {name!r} is invalid or duplicated")
+            seen.add(name)
+        if project.startswith(("/", "~")) or not re.match(r"^(~|\$CONFIG)/", global_dir):
+            report.err(tsv, n, "project dir must be relative; global dir must start with ~/ or $CONFIG/")
+        if f"| `{agent}`" not in doc:
+            report.err(tsv, n, f"agent {agent!r} is missing from docs/agents.md")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-luau", action="store_true", help="skip luau-lsp / stylua checks")
@@ -506,6 +529,7 @@ def main() -> int:
     if args.fix_format:
         return fix_format(blocks)
 
+    check_agents(report)
     for b in blocks:
         check_deprecated(b, report)
     if not args.no_luau:

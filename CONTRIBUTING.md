@@ -36,6 +36,11 @@ claude plugin validate .            # if you have Claude Code: check the plugin 
 2. Add a row to the README table, and list the skill under "Related skills" in neighboring skills.
 3. Run the validator.
 
+## Adding an agent
+
+Add a row to `scripts/agents.tsv` (both installers read it) and to the table in `docs/agents.md`, using
+the folders from the agent's own docs. The validator checks that they match.
+
 ## Releasing
 
 Bump `version` in `.claude-plugin/plugin.json` and add a `## x.y.z — date` entry to `CHANGELOG.md`.

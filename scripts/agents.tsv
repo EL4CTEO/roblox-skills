@@ -1,0 +1,33 @@
+# Skill directories per agent, read by install.sh and install.ps1 and listed in docs/agents.md.
+# Columns (tab-separated): id, aliases (comma-separated or -), project dir, global dir, tools.
+# In the global column, ~ is your home directory and $CONFIG is $XDG_CONFIG_HOME (default ~/.config).
+# Sources: each tool's docs and the `skills` CLI agent table (github.com/vercel-labs/skills).
+agents	universal,codex,cline,warp,zed,kimi	.agents/skills	~/.agents/skills	Codex, Cline, Warp, Zed, Kimi Code; in projects also Cursor, Gemini CLI, Copilot, OpenCode, Amp, Kilo Code, Droid, Antigravity
+claude	claude-code	.claude/skills	~/.claude/skills	Claude Code
+cursor	-	.agents/skills	~/.cursor/skills	Cursor
+opencode	-	.opencode/skills	$CONFIG/opencode/skills	OpenCode
+gemini	gemini-cli	.gemini/skills	~/.gemini/skills	Gemini CLI
+copilot	github-copilot	.github/skills	~/.copilot/skills	GitHub Copilot (CLI, VS Code, coding agent)
+antigravity	-	.agents/skills	~/.gemini/antigravity/skills	Google Antigravity
+amp	-	.agents/skills	$CONFIG/agents/skills	Amp
+kilo	kilocode	.agents/skills	~/.kilo/skills	Kilo Code
+droid	factory	.agents/skills	~/.factory/skills	Factory Droid
+windsurf	-	.windsurf/skills	~/.codeium/windsurf/skills	Windsurf
+roo	roo-code	.roo/skills	~/.roo/skills	Roo Code
+kiro	kiro-cli	.kiro/skills	~/.kiro/skills	Kiro
+junie	-	.junie/skills	~/.junie/skills	JetBrains Junie
+goose	-	.goose/skills	$CONFIG/goose/skills	Goose
+qwen	qwen-code	.qwen/skills	~/.qwen/skills	Qwen Code
+continue	-	.continue/skills	~/.continue/skills	Continue
+crush	-	.crush/skills	$CONFIG/crush/skills	Crush
+trae	-	.trae/skills	~/.trae/skills	Trae
+augment	-	.augment/skills	~/.augment/skills	Augment
+openhands	-	.openhands/skills	~/.openhands/skills	OpenHands
+devin	-	.devin/skills	$CONFIG/devin/skills	Devin for Terminal
+vibe	mistral-vibe	.vibe/skills	~/.vibe/skills	Mistral Vibe
+qoder	-	.qoder/skills	~/.qoder/skills	Qoder
+codebuddy	-	.codebuddy/skills	~/.codebuddy/skills	CodeBuddy
+tabnine	tabnine-cli	.tabnine/agent/skills	~/.tabnine/agent/skills	Tabnine CLI
+rovodev	-	.rovodev/skills	~/.rovodev/skills	Atlassian Rovo Dev
+iflow	iflow-cli	.iflow/skills	~/.iflow/skills	iFlow CLI
+pi	-	.pi/skills	~/.pi/agent/skills	Pi

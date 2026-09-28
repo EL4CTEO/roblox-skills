@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate
+        run: |
+          pip install pyyaml
+          ./scripts/setup-tools.sh
+          python3 scripts/validate.py
+
+      - name: Build release assets
+        run: |
+          python3 scripts/build-assistant.py
+          mkdir -p out
+          (cd dist && zip -qr ../out/roblox-assistant-skills.zip assistant)
+          zip -qr out/roblox-skills.zip skills README.md LICENSE
+
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '
+            $0 ~ "^## " v " " { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > notes.md
+          [ -s notes.md ] || echo "Release $GITHUB_REF_NAME" > notes.md
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" out/*.zip \
+            --title "Roblox Skills $GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            --verify-tag

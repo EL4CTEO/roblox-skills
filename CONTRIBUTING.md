@@ -38,4 +38,6 @@ claude plugin validate .            # if you have Claude Code: check the plugin 
 
 ## Releasing
 
-Bump `version` in `.claude-plugin/plugin.json`, add an entry to `CHANGELOG.md`, and tag the release.
+Bump `version` in `.claude-plugin/plugin.json` and add a `## x.y.z — date` entry to `CHANGELOG.md`.
+Then push a `vX.Y.Z` tag, or run the **Release** workflow manually with that tag. It validates the
+skills, builds `roblox-skills.zip` and the Studio Assistant bundle, and publishes the GitHub release.

@@ -3,6 +3,11 @@ name: Release
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Version tag to create and release from the selected branch (e.g. v1.0.0)"
+        required: true
 
 permissions:
   contents: write
@@ -10,6 +15,8 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
 
@@ -32,19 +39,20 @@ jobs:
 
       - name: Extract release notes from CHANGELOG.md
         run: |
-          version="${GITHUB_REF_NAME#v}"
+          version="${TAG#v}"
           awk -v v="$version" '
             $0 ~ "^## " v " " { found = 1; next }
             found && /^## / { exit }
             found { print }
           ' CHANGELOG.md > notes.md
-          [ -s notes.md ] || echo "Release $GITHUB_REF_NAME" > notes.md
+          [ -s notes.md ] || echo "Release $TAG" > notes.md
 
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "$GITHUB_REF_NAME" out/*.zip \
-            --title "Roblox Skills $GITHUB_REF_NAME" \
+          # On a tag push the tag already exists; on a manual run gh creates it at this commit.
+          gh release create "$TAG" out/*.zip \
+            --title "Roblox Skills $TAG" \
             --notes-file notes.md \
-            --verify-tag
+            --target "$GITHUB_SHA"

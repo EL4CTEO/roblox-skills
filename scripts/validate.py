@@ -417,6 +417,8 @@ def check_luau(blocks: list[Block], report: Report) -> None:
         block, full, shim_line, hot = meta[key]
         if lno == shim_line or any(p in msg for p in IGNORED_PATTERNS):
             continue
+        if re.search(r"Unknown type '\w+\.\w+'", msg):
+            continue  # type exported by a module whose require can't be resolved outside the project
         if not full and not any(p in msg for p in API_ERROR_PATTERNS):
             continue
         src_lines = Path(key).read_text(encoding="utf-8").splitlines()

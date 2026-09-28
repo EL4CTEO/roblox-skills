@@ -1,6 +1,6 @@
 ---
 name: roblox-teleport-matchmaking
-description: Build multi-place and multi-server Roblox games - universes and places, TeleportService:TeleportAsync with TeleportOptions (reserved servers, specific servers, teleport data), retrying failed teleports (TeleportInitFailed), secure teleport access control, lobby-to-match flows, party/queue systems with MemoryStore, Roblox matchmaking scoring with custom signals and MatchmakingService server attributes, private/reserved server detection, and cross-server data handoff. Use when adding lobbies, rounds in separate servers, dungeons/instances, party systems, server browsers, or customizing which server players join.
+description: Multi-place and multi-server games - universes and places, TeleportAsync with TeleportOptions (reserved/specific servers, teleport data), retrying failed teleports, secure access control, lobby-to-match flows, parties and queues, Roblox matchmaking with custom signals, server type detection, data handoff. Use when adding lobbies, match servers, dungeons, parties, server browsers, or customizing server selection.
 ---
 
 # Teleports, places, and matchmaking

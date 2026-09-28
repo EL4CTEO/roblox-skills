@@ -1,6 +1,6 @@
 ---
 name: roblox-luau
-description: Write modern, idiomatic, type-safe Luau for Roblox. Covers strict mode and the new type solver, modern syntax (string interpolation, if-expressions, generalized iteration, compound assignment), the task library, require-by-string, OOP/module patterns, error handling, buffers and vectors, and legacy APIs to avoid. Use when writing, refactoring, or explaining any Luau/Roblox script, fixing type errors, or modernizing old Lua code.
+description: Modern, type-safe Luau for Roblox, covering --!strict and the new type solver, generics, string interpolation, if-expressions, task library, require-by-string, module/OOP patterns, error handling with retries, buffer/vector, and legacy APIs to avoid. Use when writing, refactoring, or explaining any Roblox script, fixing type errors, or modernizing old Lua code.
 ---
 
 # Modern Luau for Roblox

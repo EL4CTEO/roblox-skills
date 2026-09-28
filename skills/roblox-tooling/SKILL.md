@@ -1,6 +1,6 @@
 ---
 name: roblox-tooling
-description: Set up professional Roblox development outside Studio - Studio Script Sync vs Rojo (default.project.json, file naming, sourcemaps), Rokit toolchains, Wally and pesde packages, luau-lsp (types, sourcemap, Studio companion), StyLua, selene, darklua, Lune scripts, roblox-ts, .luaurc aliases, git workflow, and GitHub Actions CI for lint/format/type-check/build/publish. Use when creating a Roblox repo, configuring editors like VS Code or Cursor, adding packages, fixing sourcemap/require typing issues, or automating builds and deploys.
+description: Professional Roblox toolchain - Studio Script Sync vs Rojo, Rokit, Wally/pesde packages, luau-lsp with sourcemaps, StyLua, selene, darklua, Lune, roblox-ts, .luaurc, git, GitHub Actions CI and Open Cloud publishing. Use when creating a Roblox repo, configuring VS Code/Cursor, adding packages, fixing sourcemap/require typing, or automating builds and deploys.
 ---
 
 # Roblox tooling

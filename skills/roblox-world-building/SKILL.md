@@ -1,6 +1,6 @@
 ---
 name: roblox-world-building
-description: Build and generate Roblox worlds with code - parts, models and pivots, materials and MaterialVariants, Lighting (LightingStyle, PrioritizeLightingQuality, Atmosphere, Sky, post-processing), day/night cycles, Terrain API (FillBlock, FillBall, WriteVoxels), in-game solid modeling with GeometryService (UnionAsync, SubtractAsync, FragmentAsync for destruction), ProceduralModel generators, EditableMesh/EditableImage, visual effects (ParticleEmitter, Beam, Trail, Highlight), and procedural generation. Use when creating maps, environments, lighting, destructible objects, procedural levels, or visual effects via scripts or the Studio MCP.
+description: Building worlds with code - parts, models and pivots, materials, Lighting (LightingStyle, Atmosphere, post-processing), day/night, Terrain API, in-game CSG and destruction (GeometryService Subtract/Union/Fragment), ProceduralModel, EditableMesh/EditableImage, particles/beams/trails/highlights. Use when creating maps, environments, lighting, destructible objects, procedural levels, or visual effects.
 ---
 
 # World building with code

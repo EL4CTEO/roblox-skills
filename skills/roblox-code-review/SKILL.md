@@ -1,6 +1,6 @@
 ---
 name: roblox-code-review
-description: Review Roblox/Luau code and projects for bugs, exploits, performance problems, memory leaks, deprecated or superseded APIs, data-loss risks, and platform policy issues, with a severity-ranked checklist and the full 2026 deprecation map (e.g. LoadCharacter → LoadCharacterAsync, FindPartOnRay → Raycast, BodyVelocity → LinearVelocity, PhysicsService collision groups → workspace, MembershipType → HasRobloxSubscription). Use when reviewing a PR or script, auditing a game before launch, modernizing legacy code, or when asked "what's wrong with this Roblox code".
+description: Review Roblox/Luau code for exploits, data loss, memory leaks, performance problems, lifecycle bugs, policy issues, and deprecated or superseded APIs, using a severity-ranked checklist and the full 2026 deprecation map. Use when reviewing a PR or script, auditing a game before launch, modernizing legacy code, or asked what is wrong with some Roblox code.
 ---
 
 # Roblox code review

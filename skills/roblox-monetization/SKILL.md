@@ -1,6 +1,6 @@
 ---
 name: roblox-monetization
-description: Implement Roblox monetization correctly - developer products with an idempotent ProcessReceipt, passes (UserOwnsGamePassAsync, PromptGamePassPurchase), subscriptions, rewarded video ads (AdService), personalized shops (RankProductsAsync, RecommendTopProductsAsync), regional/managed pricing and trade arbitrage (GetUsersPriceLevelsAsync), paid random item policy (PolicyService), commerce products, private servers, and Roblox Plus/Premium. Use when adding purchases, shops, game passes, subscriptions, ads, or loot boxes, or debugging lost or duplicated purchases.
+description: Robux monetization - developer products with idempotent ProcessReceipt, passes, subscriptions, rewarded video ads, personalized shops, regional pricing and trade arbitrage, paid random item policy (PolicyService), commerce products, private servers, Roblox Plus. Use when adding purchases, shops, game passes, subscriptions, ads, or loot boxes, or debugging lost/duplicated purchases.
 ---
 
 # Roblox monetization

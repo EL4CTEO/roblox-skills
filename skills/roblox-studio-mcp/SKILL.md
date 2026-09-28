@@ -1,6 +1,6 @@
 ---
 name: roblox-studio-mcp
-description: Drive Roblox Studio from an AI agent through the built-in Studio MCP server - connecting Claude Code, Codex, Cursor, OpenCode, Gemini CLI, or VS Code; the tool set (search_game_tree, inspect_instance, script_read, script_grep, multi_edit, execute_luau, start_stop_play, get_console_output, screen_capture, character_navigation, keyboard/mouse input, asset search/insert, generation); multiple Studio instances (studio_id); and a safe explore → edit → playtest → verify loop. Use when an agent should read or modify an open Studio place, run Luau in Studio, playtest, or check output, or when setting up the Studio MCP connection.
+description: Drive Roblox Studio from an AI agent via the built-in Studio MCP server - connecting Claude Code, Codex, Cursor, OpenCode, Gemini CLI; tools to explore the DataModel, read/edit scripts, run Luau in edit/server/client, playtest, read output, capture screenshots, simulate input, insert assets. Use when an agent should inspect, modify, or playtest an open Studio place, or to set up the connection.
 ---
 
 # Working in Roblox Studio through MCP

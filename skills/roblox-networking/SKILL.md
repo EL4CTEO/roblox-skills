@@ -1,6 +1,6 @@
 ---
 name: roblox-networking
-description: Client-server communication in Roblox - RemoteEvent, UnreliableRemoteEvent, RemoteFunction, argument serialization rules, a typed remote module pattern, validation and rate limiting on the server, bandwidth optimization (deltas, buffers, batching), synchronized time, and when to use attributes or buffer-networking libraries (Zap, Blink, ByteNet). Use when adding remotes, syncing state to clients, debugging lost/nil remote arguments, or reducing network lag and bandwidth.
+description: Client-server communication - RemoteEvent, UnreliableRemoteEvent, RemoteFunction, what survives serialization, typed remote modules, server validation and rate limiting, bandwidth (deltas, buffers, batching), synced time, Zap/Blink. Use when adding remotes, syncing state to clients, debugging nil/lost remote arguments, or reducing lag and bandwidth.
 ---
 
 # Roblox networking

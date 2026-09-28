@@ -192,6 +192,17 @@ def check_skill(skill_dir: Path, report: Report) -> list[Block]:
         report.err(skill_md, 1, "missing or malformed YAML frontmatter")
         return []
     fields, _ = parsed
+    try:
+        import yaml  # optional: strict YAML check (e.g. unquoted ": " breaks many parsers)
+
+        yaml.safe_load(text[4 : text.find("\n---\n", 4)])
+    except ImportError:
+        pass
+    except Exception as exc:  # noqa: BLE001 - report any YAML error
+        report.err(skill_md, 1, f"frontmatter is not valid YAML: {exc}".splitlines()[0])
+    for key, value in fields.items():
+        if ": " in value and not value.startswith(("'", '"')):
+            report.err(skill_md, 1, f"unquoted ': ' in '{key}' is invalid YAML; rephrase or quote it")
 
     for key in fields:
         if key not in ALLOWED_KEYS:

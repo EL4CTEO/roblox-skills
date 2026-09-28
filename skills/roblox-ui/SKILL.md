@@ -1,6 +1,6 @@
 ---
 name: roblox-ui
-description: Build responsive, cross-platform Roblox UI - ScreenGui setup and safe areas (ScreenInsets), Scale vs Offset, UIListLayout flex and UIFlexItem, constraints, StyleSheets/tokens/themes, text and RichText, buttons, gamepad/touch navigation, UIDragDetector, CanvasGroup, tweened animation, BillboardGui/SurfaceGui, and when to use React-lua, Fusion, or Vide. Use when creating HUDs, menus, shops, inventories, or fixing UI that breaks on mobile, console, or different screen sizes.
+description: Responsive cross-platform UI - ScreenGui and safe areas (ScreenInsets), Scale vs Offset, UIListLayout flex/UIFlexItem, constraints, StyleSheets/tokens/themes, RichText, gamepad/touch navigation, UIDragDetector, CanvasGroup, tweens, BillboardGui/SurfaceGui, React-lua/Fusion/Vide. Use when building HUDs, menus, shops, inventories, or fixing UI that breaks on mobile, console, or other screen sizes.
 ---
 
 # Roblox UI

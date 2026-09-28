@@ -1,6 +1,6 @@
 ---
 name: roblox-testing
-description: Test Roblox games - designing testable modules with dependency injection, Jest Lua (jsdotlua/jest, runCLI, .spec files, FFlagEnableLoadModule), legacy TestEZ, running tests in Studio, via run-in-roblox, via the Studio MCP server, or in CI with Open Cloud Luau Execution, pure-Luau tests with Lune, Studio multi-client and network simulation playtests, and QA checklists. Use when adding unit/integration tests, setting up a test runner or CI, or verifying a gameplay change actually works.
+description: Testing Roblox code - testable modules with dependency injection, Jest Lua (runCLI, .spec files), legacy TestEZ, running tests in Studio, via Studio MCP, run-in-roblox, or CI with Open Cloud Luau Execution, Lune for pure Luau, multi-client playtests, QA checklist. Use when adding tests, setting up a test runner or CI, or verifying a gameplay change works.
 ---
 
 # Testing Roblox games

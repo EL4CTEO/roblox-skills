@@ -1,6 +1,6 @@
 ---
 name: roblox-input
-description: Handle player input and camera in Roblox across keyboard/mouse, touch, gamepad, and VR - the Input Action System (InputContext, InputAction, InputBinding, PreferredBinding, InputActionLabel), UserInputService (PreferredInput, mouse lock, gameProcessedEvent), ContextActionService, default/reserved bindings, custom cameras with BindToRenderStep, and mobile/console UX. Use when adding controls, keybinds, abilities, vehicles, on-screen buttons, custom cameras, or fixing input that doesn't work on some devices.
+description: Player input and cameras across keyboard/mouse, touch, gamepad, VR - Input Action System (InputContext, InputAction, InputBinding), UserInputService (PreferredInput, gameProcessedEvent, mouse lock), ContextActionService, reserved keys, custom cameras with BindToRenderStep. Use when adding controls, keybinds, abilities, vehicles, on-screen buttons, or custom cameras.
 ---
 
 # Roblox input and camera

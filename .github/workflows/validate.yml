@@ -1,0 +1,41 @@
+name: Validate skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly: re-check every code sample against the latest Roblox API definitions,
+    # so newly deprecated or removed APIs are caught even without code changes.
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install pyyaml
+
+      - name: Install luau-lsp, StyLua, and Roblox type definitions
+        run: ./scripts/setup-tools.sh
+
+      - name: Validate skills (frontmatter, links, Luau type checks, formatting, deprecated APIs)
+        run: python3 scripts/validate.py
+
+      - name: Build Roblox Studio Assistant bundles
+        run: python3 scripts/build-assistant.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: roblox-assistant-skills
+          path: dist/assistant/

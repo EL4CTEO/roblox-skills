@@ -1,6 +1,6 @@
 ---
 name: roblox-data-stores
-description: Persist and share data in Roblox - DataStoreService (UpdateAsync vs SetAsync, retries, session locking, request budgets, 4 MB/key, storage quotas), ProfileStore for player data, schema versioning and migrations, OrderedDataStore leaderboards, MemoryStoreService (sorted maps, queues, hash maps), MessagingService cross-server messages, and right-to-be-forgotten. Use when saving player data, building leaderboards, matchmaking queues, cross-server features, or fixing data loss, duplication, and throttling.
+description: Persistence and cross-server data - DataStoreService (UpdateAsync, retries, budgets, limits), session locking with ProfileStore, schema migrations, OrderedDataStore leaderboards, MemoryStore queues/sorted maps/hash maps, MessagingService, right-to-be-forgotten. Use when saving player data, building leaderboards or queues, or fixing data loss, duplication, or throttling.
 ---
 
 # Roblox data stores and cloud services

@@ -1,6 +1,6 @@
 ---
 name: roblox-security
-description: Secure Roblox games against exploiters - server authority, validating every remote argument (types, NaN/inf, string length, instance spoofing), token-bucket rate limiting, securing ProximityPrompt/ClickDetector/DragDetector, network ownership abuse, movement and combat validation, safe purchase handling, client code confidentiality, secure teleports, server-side heuristics, and the Ban API. Use when writing any server handler for client input, designing combat/economy/trading, reviewing code for exploits, or adding anti-cheat.
+description: Anti-exploit design - never trust the client, validate every remote argument (NaN, spoofed instances, strings), rate limiting, ProximityPrompt/ClickDetector abuse, network ownership, movement and hit validation, economy/trade duplication, code confidentiality, secure teleports, heuristics, Ban API. Use when writing server handlers for client input, combat/economy/trading, or reviewing for exploits.
 ---
 
 # Roblox security

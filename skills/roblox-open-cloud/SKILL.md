@@ -1,6 +1,6 @@
 ---
 name: roblox-open-cloud
-description: Use Roblox Open Cloud and HttpService - API keys and OAuth 2.0, v2 resource patterns (pagination, long-running operations), data stores/ordered data stores/memory stores from outside the game, MessagingService publish, place publishing, server restarts, Luau execution tasks, user restrictions (bans), configs and experiments, user notifications, webhooks with roblox-signature verification, rate limits, and in-game HttpService with Secrets. Use when building external tools, dashboards, Discord bots, CI/CD, admin panels, or calling web APIs from a game.
+description: Open Cloud REST APIs and HttpService - API keys/OAuth, v2 patterns, data/memory stores from outside, publishMessage, place publishing, server restarts, Luau execution, bans, configs/experiments, notifications, webhooks with roblox-signature verification, rate limits, Secrets. Use when building external tools, dashboards, bots, CI/CD, admin panels, or calling web APIs from a game.
 ---
 
 # Roblox Open Cloud and HttpService

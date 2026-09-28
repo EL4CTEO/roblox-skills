@@ -1,6 +1,6 @@
 ---
 name: roblox-performance
-description: Diagnose and fix Roblox performance - MicroProfiler, Script Profiler, Developer Console, Scene Analysis (SceneAnalysisService), Luau heap snapshots and memory categories, server heartbeat vs client FPS, memory leaks, network/replication cost, rendering (parts, draw calls, lights, textures), physics cost, instance streaming, native code generation, and Parallel Luau with Actors. Use when a game lags, stutters, drops FPS, crashes from memory on mobile, has high ping, or before optimizing any hot code path.
+description: Performance diagnosis and optimization - MicroProfiler, Script Profiler, Developer Console, Scene Analysis, Luau heap and memory categories, memory leaks, network/replication cost, rendering and physics cost, streaming, native codegen, Parallel Luau with Actors. Use when a game lags, stutters, drops FPS, crashes on mobile, has high ping, or before optimizing hot code.
 ---
 
 # Roblox performance

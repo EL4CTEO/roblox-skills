@@ -1,0 +1,12 @@
+{
+  "name": "roblox-skills",
+  "version": "1.0.0",
+  "description": "23 validated, up-to-date Agent Skills for Roblox development: modern Luau, architecture, networking, security, data stores, monetization, UI, input, physics, characters, NPC AI, performance, tooling, testing, Open Cloud, Studio MCP, audio, chat, teleports, analytics, world building, game systems, and code review.",
+  "author": {
+    "name": "EL4CTEO"
+  },
+  "homepage": "https://github.com/EL4CTEO/roblox-skills",
+  "repository": "https://github.com/EL4CTEO/roblox-skills",
+  "license": "MIT",
+  "keywords": ["roblox", "luau", "roblox-studio", "game-development", "rojo", "agent-skills"]
+}

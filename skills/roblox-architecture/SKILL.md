@@ -1,6 +1,6 @@
 ---
 name: roblox-architecture
-description: Structure Roblox games correctly - client/server model and replication, where scripts and assets belong (ServerScriptService, ReplicatedStorage, StarterPlayerScripts...), RunContext, single-entry-point service/controller bootstrapping, player and character lifecycle, CollectionService tag components, attributes, streaming-safe client code, and library choices. Use when starting a project, deciding where code goes, designing systems, or fixing "works in Studio, breaks in game" and replication/streaming bugs.
+description: Roblox project structure and client/server model - replication, where code and assets belong (ServerScriptService, ReplicatedStorage, StarterPlayer), RunContext, service/controller bootstrapping, player/character lifecycle, CollectionService components, attributes, streaming-safe client code, library choices. Use when starting a project, deciding where code goes, or fixing replication/streaming bugs.
 ---
 
 # Roblox game architecture

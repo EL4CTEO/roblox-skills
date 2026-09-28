@@ -1,6 +1,6 @@
 ---
 name: roblox-npc-ai
-description: Build NPCs and enemy AI in Roblox - PathfindingService (CreatePath, ComputeAsync, agent parameters, costs, PathfindingModifier, PathfindingLink, blocked paths), a robust follow/chase loop, finite state machines and behavior trees, perception (range, line of sight), spawning/pooling, and scaling to many NPCs (server ownership, client-side animation, AnimationController, parallel Luau). Use when creating enemies, pets, shopkeepers, followers, wave spawners, or fixing NPCs that get stuck, jitter, or lag the server.
+description: NPCs and enemy AI - PathfindingService (CreatePath, ComputeAsync, costs, modifiers, links, blocked paths), chase/follow loops, state machines, perception and line of sight, spawning/pooling, scaling to many NPCs. Use when creating enemies, pets, followers, shopkeepers, wave spawners, or fixing NPCs that get stuck, jitter, or lag the server.
 ---
 
 # NPCs and AI

@@ -1,6 +1,6 @@
 ---
 name: roblox-analytics-liveops
-description: Instrument and operate live Roblox games - AnalyticsService events (LogEconomyEvent, LogFunnelStepEvent, LogOnboardingFunnelStepEvent, LogProgressionStart/Complete/Fail, LogCustomEvent, LogJourneyEvent, custom fields), player segments, experience configs (ConfigService, live values without publishing), A/B experiments (GetConfigForPlayerAsync), badges, experience notifications and opt-in prompts, live events and seasonal content, and core loop/retention design. Use when adding analytics, tuning economy or onboarding, running A/B tests, feature flags, live events, badges, or re-engagement notifications.
+description: Analytics and live ops - AnalyticsService economy/funnel/onboarding/progression/custom events, player segments, experience configs via ConfigService, A/B experiments, badges, experience notifications, timed events, daily rewards, season passes. Use when instrumenting a game, tuning economy or onboarding, running A/B tests or feature flags, or planning live events and re-engagement.
 ---
 
 # Analytics and live operations

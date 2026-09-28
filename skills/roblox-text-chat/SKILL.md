@@ -1,6 +1,6 @@
 ---
 name: roblox-text-chat
-description: Implement Roblox chat and text safety - TextChatService (TextChannel, TextSource, SendAsync, ShouldDeliverCallback, OnIncomingMessage, TextChatCommand, bubble/window configuration, system messages, team/private/proximity channels, chat tags), mandatory text filtering with TextService:FilterStringAsync for any player-authored text (pet names, signs, trades), rate limits, privacy checks (CanUserChatAsync, SetDirectChatRequester), PolicyService per-user restrictions, and migrating from the legacy Chat service. Use when adding chat features, commands, custom chat UI, or any feature that shows text written by one player to others.
+description: Chat and text safety - TextChatService (channels, SendAsync, ShouldDeliverCallback, OnIncomingMessage, commands, bubbles, custom UI), mandatory TextService filtering of any player-authored text, rate limits, privacy checks, PolicyService restrictions, legacy Chat migration. Use when adding chat features or commands, or any feature that shows one player's text to others (names, signs, notes).
 ---
 
 # Chat and text safety

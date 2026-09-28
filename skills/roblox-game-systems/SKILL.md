@@ -1,6 +1,6 @@
 ---
 name: roblox-game-systems
-description: Production-ready recipes for common Roblox game systems - leaderstats and currency, XP/levels, round-based game loops with intermission and teams, server-validated combat (melee/ranged hitboxes, cooldowns, damage), inventory and equipment, shops, obby checkpoints, daily rewards and streaks, pets/followers, and admin commands - built on the security, data, and networking rules. Use when implementing or reviewing gameplay systems like rounds, combat, weapons, inventories, shops, currencies, progression, or rewards.
+description: Recipes for common systems built on server authority - currency service and leaderstats, XP/levels, round loops with intermission and teams, validated melee/ranged combat, inventory and tools, soft-currency shops, obby checkpoints, daily rewards, pets. Use when implementing or reviewing gameplay systems such as rounds, combat, weapons, inventories, shops, currencies, or progression.
 ---
 
 # Game systems recipes

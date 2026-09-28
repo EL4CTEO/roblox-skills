@@ -61,8 +61,9 @@ are granted by Roblox. Check eligibility requirements in the Commerce products d
 
 ## Premium and Roblox Plus
 
-- `player.MembershipType == Enum.MembershipType.Premium` for Premium perks; engagement-based payouts
-  reward Premium playtime automatically — make perks cosmetic/convenience, never pay-to-win.
+- `player.HasRobloxSubscription` is `true` for players with an active Roblox subscription (use it for
+  subscriber perks; `Player.MembershipType` is deprecated). Engagement-based payouts reward subscriber
+  playtime automatically — make perks cosmetic/convenience, never pay-to-win.
 - **Roblox Plus** subscribers get 10–20% off eligible purchases (Roblox covers the discount; your
   earnings don't drop), free paid private servers (you're still compensated), and free Robux transfers.
 - `MarketplaceService:PromptRobloxSubscriptionPurchase(player)` prompts a Roblox Plus sign-up and

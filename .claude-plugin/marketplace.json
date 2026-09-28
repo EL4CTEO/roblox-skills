@@ -1,0 +1,16 @@
+{
+  "name": "roblox-skills",
+  "description": "Agent Skills for Roblox game development",
+  "owner": {
+    "name": "EL4CTEO"
+  },
+  "plugins": [
+    {
+      "name": "roblox-skills",
+      "source": "./",
+      "description": "23 validated, up-to-date skills covering the full Roblox development workflow (Luau, client/server, security, data, UI, physics, tooling, testing, Studio MCP, and more).",
+      "category": "development",
+      "tags": ["roblox", "luau", "gamedev"]
+    }
+  ]
+}

@@ -32,10 +32,10 @@ decides → state replicates → clients render*.
 Rules:
 - Code in `ReplicatedStorage` is **downloadable by exploiters**. Never put server logic, secrets,
   admin lists, or anti-cheat thresholds there.
-- `Script.RunContext`: `Legacy` (default: runs based on location), `Server`, or `Client`. A
-  `Script` with `RunContext = Client` runs on clients wherever it replicates (e.g. `ReplicatedStorage`,
-  `Workspace`); prefer explicit entry points over scattered context scripts.
-- Scripts don't run in `ReplicatedStorage`/`ServerStorage` unless their RunContext says so.
+- `Script.RunContext`: `Legacy` (default: behavior depends on the container), `Server`, `Client`, or
+  `Plugin`. A non-Legacy RunContext makes a `Script` run **regardless of container** (e.g. a `Client`
+  Script in `ReplicatedStorage` runs on every client) — so templates you clone must not contain such
+  scripts unintentionally. Legacy `Script`s don't run in `ReplicatedStorage`/`ServerStorage`.
 
 ## Project layout (Rojo-style, recommended)
 
@@ -51,7 +51,9 @@ ServerPackages/      -> ServerScriptService.ServerPackages
 ```
 
 One entry script per side, everything else is a ModuleScript. This gives deterministic load order,
-testable modules, and a single place to wire dependencies. Tooling setup: `roblox-tooling`.
+testable modules, and a single place to wire dependencies. Roblox's own recommendation is equivalent:
+one `Script` (`RunContext = Server`) in `ServerScriptService` and one `Script` (`RunContext = Client`) in
+`ReplicatedStorage`, each requiring modules and calling their `start()`. Tooling setup: `roblox-tooling`.
 
 ## Bootstrapping services (no framework needed)
 

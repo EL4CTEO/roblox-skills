@@ -98,7 +98,7 @@ common features (global updates, `MessageAsync`, mock stores for Studio).
   numbers, strings, booleans, and `buffer`s. Serialize datatypes (`{ x, y, z }`). Validate UTF-8 strings.
 - Keys and data store names ≤ 50 characters; value ≤ 4,194,304 characters after JSON encoding.
 - Stable key patterns (`User_{UserId}`), never display names. Few data stores, few keys per player.
-- Studio needs **Game Settings → Security → Enable Studio Access to API Services**; use a separate test
+- Studio needs **File → Experience Settings → Security → Enable Studio Access to API Services**; use a separate test
   universe or a different data store name so testing never touches production data.
 
 Complete raw implementation (session lock, autosave, BindToClose, retries):

@@ -1,7 +1,7 @@
 # Server authority model
 
-Source: Roblox "Server authority model" and "Server authority techniques" docs (2026). The feature has
-been rolling out through beta; confirm current status in the docs before committing a project to it.
+Source: Roblox "Server authority model" and "Server authority techniques" docs (2026). Fully released for
+all games in July 2026; it is opt-in per place.
 
 ## What it is
 
@@ -34,6 +34,11 @@ clients never report positions.
    not ordered relative to property/attribute replication.
 6. **Prediction control**: Roblox predicts simulation-access properties near the local character by default;
    force it on/off with `RunService:SetPredictionMode(instance, mode)`.
+7. **Camera**: read a player's camera on the server with `player:GetCameraState()` (table with `CFrame`,
+   `FieldOfView`, `ViewportSize`). Camera `InputAction` replication (`CameraContext.CameraAction`) no longer
+   syncs since the full release.
+
+Known limits at full release: 8 playing animation tracks per `Animator`; Backpacks and Tools are supported.
 
 ```luau
 --!strict

@@ -65,5 +65,5 @@ return track
 
 ## 5. Verify
 
-Re-measure after each change on the **lowest-end target device** (or the Device Emulator plus a real
-phone), in a live server with realistic player counts — Studio's single-player timings hide server load.
+Re-measure after each change on the **lowest-end target device** (a real low-end
+phone — the Device Simulator models screen and input, not hardware speed), in a live server with realistic player counts — Studio's single-player timings hide server load.

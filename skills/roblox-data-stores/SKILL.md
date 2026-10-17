@@ -165,6 +165,10 @@ print(migrate({ gold = 5, inventory = { "Sword", "Sword" } }))
 - Read top N with `GetSortedAsync(false, 100)` on **one** server loop (e.g. every 60 s), cache the
   result, and replicate to clients. Don't let every server/client read constantly.
 - For "this week" boards, include the period in the store name (`Wins_2026W39`) or use a MemoryStore sorted map.
+- **Roblox-native leaderboards** (fully released): register the `OrderedDataStore` in Creator Hub (game →
+  leaderboards) and toggle "Active leaderboard"; Roblox renders persistent Global and Friends tabs in the
+  player list. The store stays the source of truth (one active board per game). Initialize each player's
+  score on join so the tabs render correctly.
 
 ## MemoryStore essentials
 

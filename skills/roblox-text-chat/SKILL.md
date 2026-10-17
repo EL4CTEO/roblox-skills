@@ -109,6 +109,10 @@ end)
 More: proximity chat, team channels, custom UI, and migrating from legacy chat:
 [references/chat-recipes.md](references/chat-recipes.md).
 
+**Quick Words** (preset safe phrases for all ages, for coordinating where free chat is limited): add game-specific
+ones in Creator Hub → game → Configure → Chat → Quick Words — up to 3 categories of 3–10 phrases, in English
+(auto-translated), reviewed before going live. They replace the default categories; General stays.
+
 ## PolicyService (per-user restrictions)
 
 `PolicyService:GetPolicyInfoForPlayerAsync(player)` (server, `pcall`) returns flags such as

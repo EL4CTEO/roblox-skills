@@ -47,6 +47,11 @@ The authoritative list with scopes and per-endpoint rate limits is the Open Clou
   Data store budgets are **shared** between Open Cloud and live game servers — throttle bulk scripts so they
   don't starve the game (see `roblox-data-stores`).
 - **Errors**: JSON `{ code, message }`; retry only `429` and `5xx`.
+- **Legacy web APIs** (cookie or unauthenticated IP): after Oct 19, 2026, limits on the badges, datastores,
+  game-persistence, inventory, thumbnails, and users APIs drop sharply (often to 100 requests/min). Open Cloud
+  limits don't change: use Open Cloud with an API key for tools and bots, and cache responses.
+- **Thumbnails**: from Oct 26, 2026 an unapproved or broken thumbnail returns `200` with a completed
+  operation containing an `error` object (not `503`); check `error` before reading `response.imageUri`.
 
 ```bash
 # Read one player's data store entry
@@ -118,8 +123,10 @@ Never log or send player chat/PII to third parties without a legitimate purpose 
 
 ## Webhooks (Roblox → your server)
 
-Configure in Creator Dashboard → Webhooks. Triggers: subscription purchased/renewed/cancelled/refunded/
-resubscribed, right-to-erasure requests, commerce order paid/refunded, transaction refunded.
+Configure in Creator Hub → Account Settings → Webhooks (max 5; for group games only the group owner).
+Triggers: subscription purchased/renewed/cancelled/refunded/resubscribed, right-to-erasure requests,
+commerce order paid/refunded, **transaction refunded** (Robux refunds/chargebacks of developer products,
+passes, private servers, Paid Access — revoke developer product benefits yourself).
 Verification details and a Node/Python verifier: [references/webhooks.md](references/webhooks.md).
 
 ## Related skills

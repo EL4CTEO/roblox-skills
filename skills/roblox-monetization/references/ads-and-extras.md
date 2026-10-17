@@ -1,4 +1,4 @@
-# Rewarded video ads, commerce products, Premium and Roblox Plus
+# Rewarded video ads, commerce products, Premium and Roblox Plus, 18+ rate
 
 ## Rewarded video ads (AdService)
 
@@ -68,6 +68,30 @@ are granted by Roblox. Check eligibility requirements in the Commerce products d
   earnings don't drop), free paid private servers (you're still compensated), and free Robux transfers.
 - `MarketplaceService:PromptRobloxSubscriptionPurchase(player)` prompts a Roblox Plus sign-up and
   earns a referral payout. `PromptPremiumPurchase` is deprecated.
+
+## US 18+ DevEx rate and age checks
+
+Spend from age-checked 18+ US players in eligible games cashes out at $0.54 per 100 earned Robux instead
+of $0.38 (passes, developer products, in-game subscriptions, private servers, and Paid Access in Robux).
+Check eligibility in Creator Dashboard; nothing to switch on.
+
+- `player.AgeChecked` (`Enum.AgeCheckStatus.Checked` / `Unchecked`, read-only, replicated) shows whether
+  the player completed an age check.
+- `player:PromptAgeCheck()` opens the age-check flow (non-yielding). Max one prompt per player per 15
+  minutes per session; extra calls are dropped silently, so prompt on a deliberate player action, not on spawn.
+- Console and VR can't complete it, and some players can't (parental consent, cooldown). Treat `Unchecked`
+  as normal: gate optional rewards behind it, never core gameplay.
+
+```luau
+--!strict
+local function offerAgeCheck(player: Player)
+	if player.AgeChecked == Enum.AgeCheckStatus.Unchecked then
+		player:PromptAgeCheck()
+	end
+end
+
+return offerAgeCheck
+```
 
 ## Private servers
 

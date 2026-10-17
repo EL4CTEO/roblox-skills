@@ -138,7 +138,8 @@ Creator Store procedural models are sandboxed automatically.
 runtime geometry and pixel editing (deformable terrain chunks, painting, custom avatars). Published games
 require the owner to be ID + 13+ verified and **Enable Mesh / Image APIs** in Creator Dashboard; strict
 client memory budgets apply; only assets owned by/shared with the game owner can be loaded. Display via
-`AssetService:CreateMeshPartAsync(Content.fromObject(editableMesh))`.
+`AssetService:CreateMeshPartAsync(Content.fromObject(editableMesh))`. For many vertices/faces use the
+EditableMesh **batch APIs** and parallel queries (released for live games) instead of per-element calls.
 
 ## Effects
 

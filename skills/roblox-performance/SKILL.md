@@ -18,7 +18,7 @@ description: Performance diagnosis and optimization - MicroProfiler, Script Prof
 | Luau heap snapshots | Dev Console → Memory → Luau Heap | What tables/closures/instances are held and by what (leaks). |
 | Scene Analysis | Studio | Script memory, unparented instances (leaks), instance composition, audio/animation memory, triangles. Also `SceneAnalysisService` via Studio MCP. |
 | Performance Stats / Debug Stats | Ctrl+Alt+F7 / Shift+Ctrl+F1–F5 | Live CPU/GPU/memory/network overlays. |
-| Network Simulation | Studio (Alt+S) | Test with latency, jitter, packet loss. |
+| Network Simulator | Studio Device Simulator toolbar | Test with latency, jitter, packet loss (3G/4G/Wi-Fi profiles). |
 | Performance dashboard | Creator Hub | Live aggregate FPS, server heartbeat, memory, crash rates by device. |
 
 Label your own code in the MicroProfiler and memory views:

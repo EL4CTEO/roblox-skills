@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.1 — 2026-10-17
+
+Updated for Roblox releases from mid-September to October 17, 2026 (Studio 0.743).
+
+- **Fixes**: server authority is fully released (no more "rolling out"), and the camera now syncs through
+  `Player:GetCameraState()`; `ClipsDescendants` clips rotated UI by default; Device Emulator → Device Simulator.
+- **Physics**: `BasePart:BindToCollisionSummaries` for impact point, normal, and speed; `CollisionFidelity.Tunable`.
+- **Streaming**: `Player.FrustumStreaming` for scopes, racing, and free cameras.
+- **Monetization**: `MarketplaceService:OpenShop`, selling items outside the game, refund handling, age
+  check API (`PromptAgeCheck`, `AgeChecked`), and the US 18+ DevEx rate.
+- **Open Cloud**: Transaction Refunded webhook details, legacy web API rate-limit cuts, new thumbnail error format.
+- **Data stores**: Roblox-native Friends and Global leaderboards.
+- **Audio**: Acoustic Simulation (fully released) and text-to-speech auto-translation.
+- **Chat, analytics, building**: custom Quick Words, Early Harm Detection, Player Support reports, early
+  testers, the new discovery measurement, and EditableMesh batch APIs.
+
 ## 1.1.0 — 2026-09-28
 
 - Support for many more agents. `install.sh` and `install.ps1` now read their targets from

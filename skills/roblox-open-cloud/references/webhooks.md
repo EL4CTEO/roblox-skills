@@ -71,6 +71,12 @@ def roblox_webhook():
 
 - **Right to erasure**: delete the user's data from every data store/key and any external storage; see
   automated RTBF in `roblox-data-stores` (preferred when keys follow static patterns).
-- **Refunds**: optionally revoke the refunded item/currency; record abuse patterns.
+- **Transaction Refunded** (developer products, passes, private servers, Paid Access; fires immediately on
+  a refund or chargeback): `EventPayload` carries the buyer's user ID, product type and ID, Robux amount
+  (the product's original price, not what the buyer paid), universe and place, transaction/receipt ID,
+  and refund time. Pass and avatar-item ownership is revoked by Roblox; developer product benefits must be
+  removed by you — queue a revocation in the player's data store entry (Open Cloud) or notify live servers
+  with `publishMessage`. A delivery missed while your endpoint is down isn't re-sent, so keep it available.
+- Subscription refunds use the subscription webhooks, not Transaction Refunded.
 - **Commerce order paid**: may be delivered more than once — deduplicate by order ID.
 - Respond `2xx` quickly and process asynchronously; failed deliveries are retried.

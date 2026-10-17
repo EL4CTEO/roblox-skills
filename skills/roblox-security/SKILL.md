@@ -142,7 +142,7 @@ themselves: anchor them, or `part:SetNetworkOwner(nil)` for server ownership.
 Clients own their character's physics, so they can teleport, fly, noclip, speed hack, fling other
 players (NaN/huge velocities), and suppress `Touched`. Options, strongest first:
 
-1. **Server authority** (Workspace `AuthorityMode = Server`; rolling out in 2026 — check current status): the
+1. **Server authority** (Workspace `AuthorityMode = Server`; fully released, opt-in): the
    server simulates movement with client prediction and rollback, eliminating movement exploits.
    See `roblox-physics`.
 2. Server-side movement checks: compare horizontal (XZ) displacement per interval against max speed

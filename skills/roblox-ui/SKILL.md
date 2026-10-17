@@ -19,7 +19,7 @@ description: Responsive cross-platform UI - ScreenGui and safe areas (ScreenInse
   `UITextSizeConstraint` with `TextScaled` bounds text size (prefer fixed `TextSize` + `AutomaticSize`
   where possible — `TextScaled` produces inconsistent sizes).
 - `AutomaticSize` lets frames grow with content (lists, tooltips, chat bubbles).
-- Test every screen in the **Device Emulator** (phone portrait/landscape, tablet, console 10-foot, 4K).
+- Test every screen in the **Device Simulator** (phone portrait/landscape, tablet, console 10-foot, 4K).
 
 ## Layout
 
@@ -112,6 +112,9 @@ Roblox's engine-level styling replaces copy-pasted property values:
 - Animate `UIScale.Scale` for pop effects rather than `Size` (keeps layout stable).
 - `CanvasGroup` fades a whole subtree (`GroupTransparency`) but renders to a texture: use it for
   fading panels, not for large always-visible UI (memory/quality cost).
+- `ClipsDescendants` now clips **rotated** children and `Path2D` too (default since Sep 24, 2026;
+  `StarterGui.ClipsDescendantsSupportsRotation` opt-out is removed in November 2026). To keep a rotated child
+  unclipped, make it a sibling with a higher `ZIndex`. A rotated parent still clips only inside a `CanvasGroup`.
 - Drag-and-drop: `UIDragDetector` (the deprecated `GuiObject.Draggable` no longer works for new work).
 
 ## World-space UI

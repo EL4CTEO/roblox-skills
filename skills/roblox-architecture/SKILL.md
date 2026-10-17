@@ -205,6 +205,8 @@ With `Workspace.StreamingEnabled`, clients only have nearby parts. Client code m
 - Treat `GetChildren`, raycasts, and property reads of streamed-out parts as partial/stale; do full-world
   queries on the server.
 - Pre-stream destinations on the server with `player:RequestStreamAroundAsync(position)` before teleporting a character.
+- Scopes, racing, free cameras: `player.FrustumStreaming = Enum.FrustumStreamingMode.Automatic` streams what
+  the camera sees instead of raising the radius.
 
 Full pattern catalog and recommended Workspace settings: [references/streaming.md](references/streaming.md).
 

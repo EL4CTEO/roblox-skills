@@ -113,7 +113,8 @@ end
 - **Experiments / targeted configs** evaluate per player: use `ConfigService:GetConfigForPlayerAsync(player)`
   (`GetConfigAsync` ignores targeting). Experiments run 14–60 days, up to two variants plus control; pick a
   goal metric and respect the minimum detectable effect. Manage via Creator Hub or the Open Cloud
-  experimentation API (`roblox-open-cloud`).
+  experimentation API (`roblox-open-cloud`). **Early Harm Detection** shows near-real-time playtime, payer
+  conversion, and ARPU (every 5 min) for the first 24 h — stop a harmful variant early.
 - Studio testing: `ConfigService:SetTestingValue(key, value)` / `ClearTestingValue`.
 
 ## Badges
@@ -140,7 +141,13 @@ great onboarding and progression milestones and show on players' profiles.
 - **Daily rewards/streaks**: store `lastClaimDay` (UTC day number) and streak count; grant on the server.
 - Ship content behind config flags, validate with a small rollout/experiment, then roll out to 100%.
 - Watch Creator Hub dashboards: retention (D1/D7/D30), session length, conversion, ARPPU, funnels, and
-  performance (crash rate, FPS, memory) after every release.
+  performance (crash rate, FPS, memory) after every release. Discovery impressions/plays use a new
+  measurement pipeline from Oct 12, 2026 (higher counts, slightly lower play-through rate) — don't read the
+  jump as a real change.
+- **Before launch**: invite up to 10 friends or group members as early testers from the publish flow.
+- **Player Support** (early access, age-checked 13+): add an in-game "report a problem" button that calls
+  `SocialService:PromptFeedbackSubmissionAsync({ FeedbackType = Enum.FeedbackType.PlayerSupport })`
+  (client, `pcall`); reports arrive with device info and screenshots in Creator Hub → Audience → Player Support.
 
 ## Related skills
 

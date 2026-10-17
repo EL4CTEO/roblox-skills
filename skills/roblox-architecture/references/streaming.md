@@ -88,6 +88,28 @@ return teleportCharacter
 `Player:AddReplicationFocus(part)` / `RemoveReplicationFocus(part)` keep an extra area loaded for a player
 (e.g. a camera cutscene location). Keep the number of extra foci small.
 
+## Frustum streaming (camera view)
+
+`Player.FrustumStreaming` also streams what the camera looks at (out to the render distance, max 100,000
+studs) without raising the radius in every direction — scopes, racing, free cameras. Opt-in per player:
+
+- `Enum.FrustumStreamingMode.Automatic` — the engine turns it on for narrow FOV, fast movement in the
+  looking direction, or a camera far from the avatar. Best default.
+- `Enabled` / `Disabled` — manual control, e.g. force it on when a scope starts equipping. Set it on the server.
+- No occlusion culling; wider FOV streams more. With `Opportunistic` stream-out, things leave shortly after
+  they exit the view (and the normal radius). Usual streaming-safe client code still applies.
+
+```luau
+--!strict
+local function setScoped(player: Player, scoped: boolean)
+	player.FrustumStreaming = if scoped
+		then Enum.FrustumStreamingMode.Enabled
+		else Enum.FrustumStreamingMode.Automatic
+end
+
+return setScoped
+```
+
 ## Testing
 
 - Test with `StreamingTargetRadius = 64` to surface bugs.

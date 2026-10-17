@@ -1,6 +1,6 @@
 ---
 name: roblox-physics
-description: Physics and spatial queries - Raycast/Blockcast/Spherecast, overlap queries, collision groups, Touched pitfalls, assemblies and welds, mover constraints replacing BodyMovers, mechanical constraints, network ownership, CFrame math, vehicles/projectiles, and server authority (BindToSimulation, prediction, rollback). Use when moving parts, detecting hits, building vehicles or projectiles, or fixing jitter, flinging, or ownership bugs.
+description: Physics and spatial queries - Raycast/Blockcast/Spherecast, overlap queries, collision groups, Touched pitfalls, collision summaries (impact point/normal/speed), assemblies and welds, mover constraints replacing BodyMovers, mechanical constraints, network ownership, CFrame math, vehicles/projectiles, and server authority (BindToSimulation, prediction, rollback). Use when moving parts, detecting hits, building vehicles or projectiles, or fixing jitter, flinging, or ownership bugs.
 ---
 
 # Roblox physics and spatial queries
@@ -75,6 +75,34 @@ pad.Touched:Connect(function(hit)
 end)
 ```
 
+## Collision summaries (impact data)
+
+For *how* parts hit (impact FX, impact audio, damage by impact speed), use
+`BasePart:BindToCollisionSummaries(callback)` instead of `Touched`. Once per frame after the physics step,
+the callback gets every contact of that part: `Part0` (the bound part), `Part1`, `Point`, `Normal` (points
+away from `Part0`), `RelativeVelocity` (before the solver resolves the hit), `Area`, and `Time`.
+
+- Fires only where the part is simulated (its network owner); nothing replicates. Send what others need
+  through your own remote, validated on the server.
+- No summaries for `CanCollide = false` parts or between two sleeping parts; non-convex parts can produce
+  several summaries per pair. Cost scales with bound parts, not total collisions.
+
+```luau
+--!strict
+local function bindImpacts(part: BasePart, onImpact: (point: Vector3, speed: number) -> ()): RBXScriptConnection
+	return part:BindToCollisionSummaries(function(summaries: { any })
+		for _, summary in summaries do
+			local speed = math.abs(summary.RelativeVelocity:Dot(summary.Normal)) -- head-on impact speed
+			if speed > 10 then
+				onImpact(summary.Point, speed)
+			end
+		end
+	end)
+end
+
+return bindImpacts
+```
+
 ## Collision groups
 
 ```luau
@@ -92,6 +120,10 @@ ghost.Parent = workspace
 Register groups once at server start (max 32, see `workspace:GetMaxCollisionGroups()`). `CanCollide = false` removes all collisions;
 `CanQuery = false` hides a part from raycasts; `CanTouch = false` disables `Touched` (saves CPU);
 `NoCollisionConstraint` disables collision between two specific parts.
+
+`MeshPart` collision shape: `CollisionFidelity` `Box`/`Hull` (cheap), `Default`, `PreciseConvexDecomposition`
+(costly), or `Tunable` with a `CollisionPrecision` slider (set in Studio; scripts can't write it) to trade
+precision for performance per mesh.
 
 ## Assemblies and joints
 
@@ -147,8 +179,10 @@ frames ahead and **roll back/resimulate** on mispredictions. Requirements: `Next
   not `UserInputService` events.
 - Sync custom state through **attributes** on predicted instances, written only inside simulation callbacks.
 - Don't cache `AnimationTrack`s; query `Animator:GetTrackByAnimationId()` each step.
+- Read a player's camera on the server with `player:GetCameraState()` (`CFrame`, `FieldOfView`,
+  `ViewportSize`); the old camera `InputAction` replication no longer syncs.
 
-Rollout status can change — check the docs. Details and patterns: [references/server-authority.md](references/server-authority.md).
+Fully released (opt-in) since July 2026. Details and patterns: [references/server-authority.md](references/server-authority.md).
 
 ## Stability tips
 

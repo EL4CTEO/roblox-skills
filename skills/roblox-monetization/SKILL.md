@@ -1,6 +1,6 @@
 ---
 name: roblox-monetization
-description: Robux monetization - developer products with idempotent ProcessReceipt, passes, subscriptions, rewarded video ads, personalized shops, regional pricing and trade arbitrage, paid random item policy (PolicyService), commerce products, private servers, Roblox Plus. Use when adding purchases, shops, game passes, subscriptions, ads, or loot boxes, or debugging lost/duplicated purchases.
+description: Robux monetization - developer products with idempotent ProcessReceipt, passes, subscriptions, rewarded video ads, personalized shops, regional pricing and trade arbitrage, paid random item policy (PolicyService), commerce products, private servers, Roblox Plus, refunds, age checks and the US 18+ rate. Use when adding purchases, shops, game passes, subscriptions, ads, or loot boxes, or debugging lost/duplicated purchases.
 ---
 
 # Roblox monetization
@@ -166,6 +166,18 @@ end)
   users different prices. `receipt.CurrencySpent` has what the user actually paid.
 - Contextual offers (revive on death, boost when stuck) outperform static menus. Also list items in
   the game's **Shop** tab in Creator Hub.
+- Open the Roblox Shop overlay from your own buttons, NPCs, or zones with `MarketplaceService:OpenShop(player)`.
+- **Listed** passes and developer products can also be sold outside the game (Home, search, after Robux
+  purchases); the player joins with the item already bought. Developer products qualify only with a correct
+  `ProcessReceipt` — Creator Hub → Monetization → Shop flags products that need a fix.
+
+## Refunds and chargebacks
+
+Refunded passes (and avatar items) lose ownership automatically — re-check ownership instead of caching it
+forever. Developer product grants live in your data, so revoke them yourself: subscribe to the
+**Transaction Refunded** webhook (covers developer products, passes, private servers, Paid Access) and
+match it by the transaction/receipt ID in the payload (see `roblox-open-cloud`). Keep handled `PurchaseId`s
+with what each granted so a refund can be reversed.
 
 ## Compliance
 
@@ -180,7 +192,8 @@ end)
   character while the ad plays.
 - Respect age/region restrictions returned by `PolicyService` for ads, social links, and trading.
 
-Rewarded video ads, commerce products, Premium/Roblox Plus hooks: [references/ads-and-extras.md](references/ads-and-extras.md).
+Rewarded video ads, commerce products, Premium/Roblox Plus hooks, US 18+ DevEx rate and age checks:
+[references/ads-and-extras.md](references/ads-and-extras.md).
 
 ## Related skills
 

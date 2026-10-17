@@ -134,8 +134,10 @@ Open Cloud Luau Execution flow (details and a script: [references/cloud-test-run
 
 - **Test** tab: Play (you + server), Run (server only, no character), **Clients and Servers** with 2+
   players to test replication, trading, and PvP. Most multiplayer bugs only appear with ≥ 2 clients.
-- Network simulation (incoming latency, jitter, packet loss) to test lag compensation.
-- Device Emulator (phones, tablets, consoles) and Controller Emulator for input/UI.
+- **Device Simulator** toolbar (Test → Device Simulator, top of the viewport): switch phone/tablet/console
+  mid-playtest, with touch-control hints; its **Network Simulator** applies 3G/4G/Wi-Fi/wired or custom
+  inbound/outbound latency, jitter, and packet loss to test lag compensation and loading/retry UX.
+  Controller Emulator for gamepad input.
 - Streaming: test with `StreamingTargetRadius = 64`.
 - DataStores in Studio: enable API access and use a separate test universe or data store names.
 

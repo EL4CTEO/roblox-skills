@@ -54,6 +54,11 @@ player:Play()
   wire `AudioListener → AudioDeviceOutput` (done automatically in default setups).
 - Distance falloff and directionality are set on the emitter/listener (`AudioEmitter:SetDistanceAttenuation`,
   the `AudioInteractionGroup` string property on emitters and listeners scopes who hears what).
+- **Acoustic simulation** (fully released; Audio API only, not `Sound` yet): set
+  `SoundService.AcousticSimulationEnabled = true` (in Studio) and 3D audio is muffled by walls, bends around
+  corners, and reverbs in rooms. Per part: `BasePart.AudioCanCollide` (false = doesn't block sound); thicker and
+  denser parts muffle more. Per emitter/listener: `AcousticSimulationEnabled`. Set
+  `SoundService.CharacterSoundsUseNewApi` so character sounds are simulated too. Quality scales down on weak devices.
 
 ## Classic Sound quick reference
 
@@ -106,7 +111,9 @@ return playAt
 - Effects: `AudioEqualizer`, `AudioCompressor`, `AudioReverb`, `AudioEcho`, `AudioChorus`, `AudioDistortion`,
   `AudioFlanger`, `AudioPitchShifter`, `AudioTremolo`, `AudioFilter`, `AudioLimiter`, `AudioAnalyzer` (read
   loudness/spectrum for visualizers).
-- `AudioTextToSpeech` (artificial voices) and `AudioSpeechToText` (transcription).
+- `AudioTextToSpeech` (artificial voices) and `AudioSpeechToText` (transcription). `AudioTextToSpeech.AutoLocalize`
+  (default `true`) translates the text into each player's language (11 languages) and picks a matching
+  voice; set it to `false` for text that must stay as written (names, chants). Uploaded TTS assets aren't translated.
 - Voice chat: each player's `AudioDeviceInput` can be wired through effects (radios, walkie-talkies,
   proximity) — see the voice chat docs; respect players' voice settings.
 - Give players separate Music/SFX volume sliders (faders or SoundGroups) and a mute option.

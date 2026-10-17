@@ -11,7 +11,7 @@ correct. They work with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, GitHub
 Cline, Roo Code, Kiro, Goose, Amp, JetBrains Junie, and [many more](docs/agents.md), plus Roblox
 Studio Assistant.
 
-- **Current**: checked against Roblox's API reference (Studio 0.740, September 2026). No `wait()`,
+- **Current**: checked against Roblox's API reference (Studio 0.743, October 2026). No `wait()`,
   `BodyVelocity`, or legacy `Chat`.
 - **Verified**: CI type-checks every Luau example against the Roblox API (strict mode, new type solver)
   and flags deprecated APIs. A weekly run catches new deprecations.

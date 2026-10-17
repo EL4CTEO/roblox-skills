@@ -167,7 +167,7 @@ end)
 - Every action has keyboard, gamepad, **and** touch bindings (touch via `UIButton` or on-screen buttons).
 - Prompts/hints update when `PreferredInput` changes. Console UI is navigable with D-pad and closes with B.
 - No hover-only interactions (touch has no hover). Hold-to-confirm for destructive actions.
-- Test in Studio's Device Emulator and Controller Emulator.
+- Test in Studio's Device Simulator (touch hints included) and Controller Emulator.
 
 ## Related skills
 

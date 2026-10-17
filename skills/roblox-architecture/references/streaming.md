@@ -102,9 +102,7 @@ studs) without raising the radius in every direction — scopes, racing, free ca
 ```luau
 --!strict
 local function setScoped(player: Player, scoped: boolean)
-	player.FrustumStreaming = if scoped
-		then Enum.FrustumStreamingMode.Enabled
-		else Enum.FrustumStreamingMode.Automatic
+	player.FrustumStreaming = if scoped then Enum.FrustumStreamingMode.Enabled else Enum.FrustumStreamingMode.Automatic
 end
 
 return setScoped

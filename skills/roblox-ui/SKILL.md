@@ -30,7 +30,7 @@ description: Responsive cross-platform UI - ScreenGui and safe areas (ScreenInse
 | Grids (inventory) | `UIGridLayout` inside a `ScrollingFrame` with `AutomaticCanvasSize` |
 | Carousels/pages | `UIPageLayout` |
 | Rounded corners, borders, padding | `UICorner`, `UIStroke`, `UIPadding` |
-| Gradients, shadows | `UIGradient`, `UIShadow` |
+| Gradients, shadows | `UIGradient` (`Type` = `Linear`/`Radial`/`Conical`/`Elliptical`), `UIShadow` |
 | Scale a whole group | `UIScale` |
 
 ```luau

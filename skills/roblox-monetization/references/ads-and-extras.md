@@ -97,7 +97,9 @@ return offerAgeCheck
 
 Enable and price in Creator Dashboard. Detect with `game.PrivateServerId ~= ""` and
 `game.PrivateServerOwnerId` (`VIPServerId`/`VIPServerOwnerId` are deprecated). Reserved servers
-(`TeleportService:ReserveServerAsync`) also have a non-empty `PrivateServerId` but owner id `0`.
+(`TeleportOptions.ReservedServerId`) also have a non-empty `PrivateServerId` but owner id `0`.
+VIP servers now work in every place of the experience: keep the group together by teleporting with
+`TeleportOptions.VipServerId = game.PrivateServerId` (see `roblox-teleport-matchmaking`).
 
 ## Analytics for monetization
 

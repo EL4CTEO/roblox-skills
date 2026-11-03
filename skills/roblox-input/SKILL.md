@@ -17,6 +17,10 @@ All input handling is **client-side**. Send *intent* to the server via remotes; 
 
 ## Input Action System
 
+Build and audit it visually in the **Input Action Manager** (Window → Input → Input Action Manager; fully
+released): a table of contexts/actions/bindings per device that flags missing bindings and duplicate keys,
+and shows live action state in Play Solo.
+
 Structure (typically in `ReplicatedStorage.Inputs`, or created from a client script):
 
 ```text

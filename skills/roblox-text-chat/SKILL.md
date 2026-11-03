@@ -1,6 +1,6 @@
 ---
 name: roblox-text-chat
-description: Chat and text safety - TextChatService (channels, SendAsync, ShouldDeliverCallback, OnIncomingMessage, commands, bubbles, custom UI), mandatory TextService filtering of any player-authored text, rate limits, privacy checks, PolicyService restrictions, legacy Chat migration. Use when adding chat features or commands, or any feature that shows one player's text to others (names, signs, notes).
+description: Chat and text safety - TextChatService (channels, SendAsync, ShouldDeliverCallback, OnIncomingMessage, commands, bubbles, custom UI, platform-integrated chat and TextChannelWindow migration due May 2027), mandatory TextService filtering of any player-authored text, rate limits, privacy checks, PolicyService restrictions, legacy Chat migration. Use when adding chat features or commands, or any feature that shows one player's text to others (names, signs, notes).
 ---
 
 # Chat and text safety
@@ -105,6 +105,20 @@ command.Triggered:Connect(function(source: TextSource, unfilteredText: string)
 	print(`{player and player.Name} ran: {unfilteredText}`)
 end)
 ```
+
+## Platform-integrated chat (required May 2027)
+
+Roblox is making chat native. Opt in to test now: select `TextChatService` in Studio and set
+`PlatformIntegratedChat = Enabled` (Studio only, not scriptable). When enabled:
+- Roblox renders all chat, in the default window or `TextChannelWindow`s you place in UI (one per
+  `TextChannel` via `Target`; works in `SurfaceGui`s). Custom chat UIs can no longer render messages.
+- Message text is hidden from code: `TextChatMessage.Text`/`Translation`/`PrefixText`, `OnIncomingMessage`,
+  `Player.Chatted`, and `TextChannel:SendAsync` stop working (return `""` + warning). No chat logging.
+- Commands must be `TextChatCommand`s; preset phrases → Quick Words; chat tags/prefixes → role badges
+  (planned Feb 2027 — don't opt in yet if you rely on prefixes). `DisplaySystemMessage` and
+  `BubbleChatConfiguration`/`OnBubbleAdded` styling still work.
+- **New code**: build on `TextChatCommand`, `TextChannelWindow`, and system messages; avoid reading message
+  text. The `OnIncomingMessage` tag example above only works until migration.
 
 More: proximity chat, team channels, custom UI, and migrating from legacy chat:
 [references/chat-recipes.md](references/chat-recipes.md).

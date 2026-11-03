@@ -85,6 +85,7 @@ code. Search this file for the member you're looking at. Camel-case aliases (`:f
 | `Instance.RobloxLocked` | nothing |
 | `DataModel.OnClose` | `game:BindToClose()` |
 | `DataModel.VIPServerId/VIPServerOwnerId` | `PrivateServerId` / `PrivateServerOwnerId` |
+| `Workspace.AvatarUnificationMode` (deprecation planned Dec 1, 2026) | remove dependencies on it |
 | `DataModel:GetRemoteBuildMode()` | `RunService:IsServer()` |
 | `DataModel.ItemChanged` | `Instance.Changed` / `GetPropertyChangedSignal` |
 | `BaseScript.LinkedSource`, `ModuleScript.LinkedSource` | Packages |
@@ -119,7 +120,8 @@ code. Search this file for the member you're looking at. Camel-case aliases (`:f
 | `GamePassService:PlayerHasPass()` | `MarketplaceService:UserOwnsGamePassAsync()` |
 | `BadgeService:AwardBadge()` / `UserHasBadge()` / `IsDisabled()` / `IsLegal()` | `AwardBadgeAsync()` / `UserHasBadgeAsync()` / `GetBadgeInfoAsync().IsEnabled` / — |
 | `TeleportService:Teleport`, `TeleportToPlaceInstance`, `TeleportToPrivateServer`, `TeleportPartyAsync`, `TeleportToSpawnByName` | `TeleportService:TeleportAsync()` + `TeleportOptions` |
-| `TeleportService:ReserveServer()` | `ReserveServerAsync()` |
+| `TeleportService:ReserveServer()` / `ReserveServerAsync()`, `TeleportOptions.ShouldReserveServer` / `ReservedServerAccessCode` | `TeleportOptions.ReservedServerId = HttpService:GenerateGUID(false)` |
+| `AssetService:PromptCreateAssetAsync()` (removed) | `PromptCreatePlatformContentAsync()` |
 | `TeleportService.CustomizedTeleportUI` | `SetTeleportGui` |
 | `GlobalDataStore:OnUpdate()` | `MessagingService` |
 | `DataStore:RemoveVersionAsync()` | versions expire automatically; `RemoveAsync` for keys |

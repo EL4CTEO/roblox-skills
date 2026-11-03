@@ -1,6 +1,6 @@
 ---
 name: roblox-teleport-matchmaking
-description: Multi-place and multi-server games - universes and places, TeleportAsync with TeleportOptions (reserved/specific servers, teleport data), retrying failed teleports, secure access control, lobby-to-match flows, parties and queues, Roblox matchmaking with custom signals, server type detection, data handoff. Use when adding lobbies, match servers, dungeons, parties, server browsers, or customizing server selection.
+description: Multi-place and multi-server games - universes and places, TeleportAsync with TeleportOptions (ReservedServerId, VipServerId, specific servers, teleport data), retrying failed teleports, secure access control, lobby-to-match flows, parties and queues, Roblox matchmaking with custom signals, server type detection, data handoff. Use when adding lobbies, match servers, dungeons, parties, server browsers, or customizing server selection.
 ---
 
 # Teleports, places, and matchmaking
@@ -58,12 +58,14 @@ end)
 return safeTeleport
 ```
 
-`TeleportOptions`:
-- `ShouldReserveServer = true` → a new **reserved server** (private, only reachable by access code) —
-  ideal for matches, dungeons, and parties. Returns `TeleportAsyncResult` with `ReservedServerAccessCode`
-  and `PrivateServerId`.
-- `ReservedServerAccessCode = code` → join an existing reserved server (from `ReserveServerAsync(placeId)`
-  or a previous result).
+`TeleportOptions` (set **at most one** of `ReservedServerId`, `VipServerId`, `ServerInstanceId`, or it errors):
+- `ReservedServerId = HttpService:GenerateGUID(false)` → a **reserved server** (private, developer-created)
+  — ideal for matches, dungeons, and parties. The first teleport with a new GUID creates the server; reusing
+  the same GUID (store it in a DataStore/MemoryStore) sends more players to it. Generate GUIDs on the server.
+  On arrival, `game.PrivateServerId` equals that GUID.
+- `VipServerId = id` → a player's **VIP server** (its `game.PrivateServerId`), usable with any place in the
+  experience. Carry the id in teleport data to keep a VIP group private across places (VIP → match → VIP);
+  handle `TeleportInitFailed` (server closed, full, or player not allowed).
 - `ServerInstanceId = jobId` → a specific public server (e.g. "join friend's server").
 - `SetTeleportData(table)` → non-secure data readable on arrival with `player:GetJoinData().TeleportData`
   (server) or `TeleportService:GetLocalPlayerTeleportData()` (client). **Clients can tamper with it**:
@@ -71,14 +73,32 @@ return safeTeleport
   or by the reserved server's `PrivateServerId`.
 
 Deprecated: `Teleport`, `TeleportToPlaceInstance`, `TeleportToPrivateServer`, `TeleportPartyAsync`,
-`TeleportToSpawnByName`, `ReserveServer` → `TeleportAsync` + `TeleportOptions` / `ReserveServerAsync`.
+`TeleportToSpawnByName` → `TeleportAsync` + `TeleportOptions`. `ReserveServer`/`ReserveServerAsync`,
+`ShouldReserveServer`, and `ReservedServerAccessCode` → `ReservedServerId` (old access codes still work).
+
+```luau
+--!strict
+local HttpService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
+
+-- New reserved match server; returns its id so more players can be sent later.
+local function teleportToNewMatch(placeId: number, players: { Player }): string
+	local serverId = HttpService:GenerateGUID(false)
+	local options = Instance.new("TeleportOptions")
+	options.ReservedServerId = serverId
+	TeleportService:TeleportAsync(placeId, players, options)
+	return serverId
+end
+
+return teleportToNewMatch
+```
 
 ## Data handoff between places
 
 1. Save the player's data **before** teleporting (ProfileStore: end the session / wait for save).
 2. The destination loads with session locking (ProfileStore retries while the old server releases).
 3. For match parameters (mode, map, team assignments), write a MemoryStore/DataStore entry keyed by
-   the reserved server's `PrivateServerId` (or the access code) before teleporting; the match server reads
+   the reserved server's id (the `ReservedServerId` GUID) before teleporting; the match server reads
    `game.PrivateServerId` on start and loads its config.
 4. On arrival, `TeleportService:SetTeleportGui(gui)` (client, before teleport) keeps a loading screen
    up across the transition; use `ReplicatedFirst` loading screens on arrival.
@@ -88,7 +108,7 @@ Deprecated: `Teleport`, `TeleportToPlaceInstance`, `TeleportToPrivateServer`, `T
 | Server | `game.PrivateServerId` | `game.PrivateServerOwnerId` |
 | --- | --- | --- |
 | Public | `""` | `0` |
-| Reserved (`ReserveServerAsync`/`ShouldReserveServer`) | non-empty | `0` |
+| Reserved (`ReservedServerId`) | non-empty (the GUID) | `0` |
 | Private (VIP) server | non-empty | owner's user id |
 
 ## Lobby → match flow
@@ -96,8 +116,8 @@ Deprecated: `Teleport`, `TeleportToPlaceInstance`, `TeleportToPrivateServer`, `T
 1. Players queue in the lobby (party leader invites; party members stored server-side).
 2. Queue in a **MemoryStoreQueue** / sorted map by mode and rating (see `roblox-data-stores`), or use
    Roblox matchmaking to fill public servers.
-3. When a match forms: write match config to MemoryStore keyed by a new id, `TeleportAsync` all players
-   with `ShouldReserveServer = true`, store the returned `PrivateServerId` ↔ match id mapping.
+3. When a match forms: generate a GUID, write match config to MemoryStore keyed by it, then `TeleportAsync`
+   all players with `ReservedServerId = guid` (the match server reads its config via `game.PrivateServerId`).
 4. Match server: waits for expected players (timeout), runs the round, saves results, teleports everyone
    back to the lobby place (a public server, or the party's lobby via `ServerInstanceId`).
 

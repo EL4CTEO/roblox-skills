@@ -42,6 +42,17 @@ end)
 - Server: heartbeat near 60 Hz; `Stats` (`workspace:GetRealPhysicsFPS()`, Dev Console Server Stats).
 - Memory: mobile clients crash from OOM first. Keep client memory well under ~1–1.5 GB on low-end
   devices; watch `PlaceMemory`, `LuaHeap`, `GraphicsTexture`, `Sounds`, `Animation` categories.
+- Server OOM: `game.ServerLowMemoryWarning` fires (server only, live servers and Team Test, not Studio
+  playtests) when memory leaves normal levels, then every 60 s while it stays high. Use it to free memory
+  fast (destroy debris/effects, pause spawning, unload empty map areas) and log it; it frees nothing itself.
+
+```luau
+--!strict
+game.ServerLowMemoryWarning:Connect(function()
+	warn("Server memory high: cleaning up")
+	-- e.g. destroy temporary effects, pause NPC/item spawners until memory recovers
+end)
+```
 
 ## Most common problems → fixes
 

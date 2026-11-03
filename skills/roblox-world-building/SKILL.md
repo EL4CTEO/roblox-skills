@@ -86,6 +86,9 @@ terrain:FillCylinder(CFrame.new(-40, 5, 0), 20, 8, Enum.Material.Rock)
 - Bulk generation: build a `Region3` (aligned with `:ExpandToGrid(4)`) and use `ReadVoxels`/`WriteVoxels`
   with materials/occupancy arrays (4-stud voxels), in chunks, yielding between chunks.
 - `terrain:Clear()`; water look via `Terrain.WaterColor`, `WaterWaveSize`, etc.
+- **Custom terrain materials** (fully launched): up to 62 custom materials painted onto terrain, plus smaller
+  files and faster loads. Opt in per place: Workspace → **Expanded Terrain = Enabled**, save, reopen; manage
+  them in Window → 3D → Terrain Materials Manager. Thin terrain can show LOD gaps — keep it thick.
 - Procedural heightmaps: sample `math.noise(x * scale, z * scale, seed)` with octaves; use a `Random.new(seed)`
   for deterministic worlds; generate on the server or use Parallel Luau for heavy math.
 
@@ -140,6 +143,9 @@ require the owner to be ID + 13+ verified and **Enable Mesh / Image APIs** in Cr
 client memory budgets apply; only assets owned by/shared with the game owner can be loaded. Display via
 `AssetService:CreateMeshPartAsync(Content.fromObject(editableMesh))`. For many vertices/faces use the
 EditableMesh **batch APIs** and parallel queries (released for live games) instead of per-element calls.
+Players can publish an `EditableImage` to their inventory from the server with
+`AssetService:PromptCreatePlatformContentAsync(player, image, Enum.AssetType.Image)` (`pcall`; replaces
+`PromptCreateAssetAsync`; needs a published place).
 
 ## Effects
 

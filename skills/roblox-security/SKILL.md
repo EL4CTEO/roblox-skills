@@ -1,6 +1,6 @@
 ---
 name: roblox-security
-description: Anti-exploit design - never trust the client, validate every remote argument (NaN, spoofed instances, strings), rate limiting, ProximityPrompt/ClickDetector abuse, network ownership, movement and hit validation, economy/trade duplication, code confidentiality, secure teleports, heuristics, Ban API. Use when writing server handlers for client input, combat/economy/trading, or reviewing for exploits.
+description: Anti-exploit design - never trust the client, validate every remote argument (NaN, spoofed instances, strings), rate limiting, ProximityPrompt/ClickDetector abuse, network ownership, movement and hit validation, economy/trade duplication, code confidentiality, secure teleports, Device Trust API, heuristics, Ban API. Use when writing server handlers for client input, combat/economy/trading, or reviewing for exploits.
 ---
 
 # Roblox security
@@ -176,6 +176,32 @@ Client sends origin, direction/target part, and timestamp. Server checks:
 - Clients can teleport to **any place in the universe**: set **Access Control for Places → Secure within
   universe only** in Creator Dashboard, and verify eligibility on join in restricted places (default deny).
 - Never put API keys in scripts or attributes; use the in-experience Secrets store (`HttpService:GetSecret`).
+
+## Device trust (hardware attestation)
+
+`Player.DeviceTrustLevel` (server-read) reports `Pending` → `Unknown` / `None` / `Standard` / `Full`. Supported
+today on Android, Chromebook, and Meta Quest; web reports `None`; iOS, desktop, and consoles report `Unknown`
+until supported (**`Unknown` ≠ untrusted**). Studio is always `Pending`. It describes the device, not the
+player — it complements server validation, never replaces it.
+
+- Prefer routing (ranked place for `Standard`/`Full`) or gating features (trading) over rejecting players;
+  check the impact first in Creator Hub → Safety → Anti-cheat.
+- Treat `Pending` as untrusted for sensitive features. Decide on the server; tell the client via a remote.
+- To reject on join, assign the one-per-place callback in a server script:
+
+```luau
+--!strict
+local IntegrityService = game:GetService("IntegrityService")
+
+type Decision = { Action: Enum.PlayerDeviceTrustDecision, Message: string? }
+
+IntegrityService.EvaluatePlayerDeviceTrust = function(player: Player, _measures): Decision
+	if player.DeviceTrustLevel == Enum.PlayerDeviceTrustLevel.None then
+		return { Action = Enum.PlayerDeviceTrustDecision.Reject, Message = "This game can't verify your device." }
+	end
+	return { Action = Enum.PlayerDeviceTrustDecision.Accept }
+end
+```
 
 ## Detection and consequences
 

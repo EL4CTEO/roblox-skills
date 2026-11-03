@@ -39,7 +39,14 @@ print(sphereHit, boxHit, #partsInBox, #partsInSphere)
 
 - **Reuse** params objects; update `FilterDescendantsInstances` (or `params:AddToFilter(instance)`) instead
   of allocating per call.
+- Newer filters: `params.ExcludeInstances` / `IncludeInstances` (can be combined; exclude wins) supersede
+  `FilterType` + `FilterDescendantsInstances` for new code.
 - `RespectCanCollide = true` to ignore non-collidable parts; `CollisionGroup = "Name"` to query as a group.
+- Shapecasts (October 2026): `params.Margin` inflates/rounds the cast shape (a `Raycast` with a margin acts
+  as a spherecast — use a thin one where rays slip through seams); `params.SizeGradient` grows/shrinks it
+  along the cast (`0.5` ends 50% larger, `-1` shrinks to nothing) for cones and funnels;
+  `workspace:Shapecast(part, direction, params, cframeOverride?, sizeOverride?)` casts a part from any
+  pose/size without moving it (placement previews). Debug: Studio Visualization Modes → Physics → Shapecasts.
 - `GetPartsInPart(part, params)` does exact geometry overlap (costlier); `GetPartBoundsIn*` use bounding boxes.
 - Deprecated: `FindPartOnRay*`, `Ray.new`, `FindPartsInRegion3*` → use the APIs above.
 - Client queries only see streamed-in parts; authoritative checks run on the server.

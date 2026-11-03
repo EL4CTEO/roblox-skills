@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.2 — 2026-11-03
+
+Updated for Roblox releases from October 19 to November 3, 2026 (Studio 0.745).
+
+- **Teleports**: reserved servers use `TeleportOptions.ReservedServerId` (a GUID). `ReserveServerAsync`,
+  `ShouldReserveServer`, and access codes are deprecated. You can now teleport to VIP servers with `VipServerId`.
+- **Chat**: platform-integrated chat (`TextChannelWindow`, no access to message text) becomes required in May 2027.
+- **Security**: Device Trust API (`Player.DeviceTrustLevel`, `IntegrityService.EvaluatePlayerDeviceTrust`).
+- **Physics**: shapecast `Margin`, `SizeGradient`, `Shapecast` pose and size overrides, and `ExcludeInstances`/`IncludeInstances`.
+- **Performance**: `ServerLowMemoryWarning` for cleaning up before an out-of-memory crash.
+- **Other**: custom terrain materials, publishing an `EditableImage` with `PromptCreatePlatformContentAsync`, the
+  Input Action Manager, elliptical `UIGradient`, and the planned `AvatarUnificationMode` deprecation.
+- `validate.py` now flags deprecated reserved-server code and `PromptCreateAssetAsync`.
+
 ## 1.1.1 — 2026-10-17
 
 Updated for Roblox releases from mid-September to October 17, 2026 (Studio 0.743).

@@ -71,4 +71,8 @@ and verify its changes.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Corrections are welcome whenever Roblox changes an API.
 
+## Shout-outs
+
+Thanks to [fzsheik](https://github.com/fzsheik) for featuring roblox-skills in [GameDevTool's roundup of free AI tools for Roblox Studio](https://gamedevtool.com/ai-tools-for-roblox-studio/el4cteo-roblox-skills).
+
 [MIT](LICENSE). This project is not affiliated with Roblox Corporation.

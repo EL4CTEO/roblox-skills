@@ -16,6 +16,10 @@ description: Characters and animation - Humanoid properties/states, spawning (Lo
   spawns: `Players.CharacterAutoLoads = false`, then `player:LoadCharacterAsync()` when ready
   (e.g. after data loads). `LoadCharacter` (non-Async) is deprecated.
 - Characters are destroyed and recreated on death/respawn: bind per-character logic in `CharacterAdded`.
+- `Workspace.PlayerCharacterDestroyBehavior` is on by default since Nov 11, 2026: the old character is
+  destroyed right after `CharacterRemoving` handlers run, and the `Player` 5 s after `PlayerRemoving`.
+  Read what you need (leaderstats, attributes, `UserId`) **before** yielding in those handlers. `Disabled`
+  is a temporary opt-out that is removed at the end of February 2027.
 - Client-set `WalkSpeed`/`JumpHeight` are trivially exploitable; enforce limits on the server or use
   server authority (`roblox-security`, `roblox-physics`).
 

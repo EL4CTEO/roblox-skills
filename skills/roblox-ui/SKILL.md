@@ -104,7 +104,10 @@ Roblox's engine-level styling replaces copy-pasted property values:
 - **Any text from one player shown to another must be filtered** with `TextService:FilterStringAsync`
   on the server (`roblox-text-chat`). That includes pet names, signs, guild names, trade notes.
 - Use `FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json", Enum.FontWeight.Bold)` for weights.
-- Localize with `LocalizationTable`s and auto-translation; avoid baking text into images.
+- Localize with `LocalizationTable`s and auto-translation; avoid baking text into images (image
+  auto-translation is in beta for seven languages: Creator Hub → Audience → Localization).
+- Readable text on any background: `bg:GetContrastingColor()` returns black or white (or the best of the
+  candidates you pass); `a:GetContrastRatio(b)` gives the WCAG ratio (aim for ≥ 4.5 for body text).
 
 ## Animation and feel
 
@@ -116,6 +119,8 @@ Roblox's engine-level styling replaces copy-pasted property values:
   `StarterGui.ClipsDescendantsSupportsRotation` opt-out is removed in November 2026). To keep a rotated child
   unclipped, make it a sibling with a higher `ZIndex`. A rotated parent still clips only inside a `CanvasGroup`.
 - Drag-and-drop: `UIDragDetector` (the deprecated `GuiObject.Draggable` no longer works for new work).
+- Tweens and StyleSheet transitions blend colors in linear space since Studio 746 (midpoints look brighter).
+- Gamepad navigation: `SelectionGained`/`SelectionLost` pass an `inputDirection` (`Enum.GuiNavigationDirection`).
 
 ## World-space UI
 

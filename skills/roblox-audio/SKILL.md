@@ -117,6 +117,10 @@ return playAt
 - Voice chat: each player's `AudioDeviceInput` can be wired through effects (radios, walkie-talkies,
   proximity) — see the voice chat docs; respect players' voice settings.
 - Give players separate Music/SFX volume sliders (faders or SoundGroups) and a mute option.
+- Raw samples in Luau: `AudioStreamReader:Read(into)` pulls buffers (one per channel) from the wired
+  input for custom analysis; `AudioStreamWriter:Write(buffers)` pushes synthesized audio (check `Space()`
+  first). Both are thread-safe, so the processing can run in parallel Luau.
+- `VideoFrame.SubtitlesChanged(cues)` fires when on-screen subtitle cues change (including live streams).
 
 ## Related skills
 

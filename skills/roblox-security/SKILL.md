@@ -236,6 +236,8 @@ return banForExploiting
 
 Enable `Players.BanningEnabled` for the Ban API. Prefer reversible, time-limited bans (check
 `Players:GetBanHistoryAsync` to escalate); version detection rules and monitor false-positive rates.
+From January 29, 2027, **Ban Lists** (Creator Dashboard) let you ban across several of your games and share
+lists with other creators.
 
 Security review checklist and common vulnerable-code patterns: [references/checklist.md](references/checklist.md).
 

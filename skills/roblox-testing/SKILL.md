@@ -139,6 +139,8 @@ Open Cloud Luau Execution flow (details and a script: [references/cloud-test-run
   inbound/outbound latency, jitter, and packet loss to test lag compensation and loading/retry UX.
   Controller Emulator for gamepad input.
 - Streaming: test with `StreamingTargetRadius = 64`.
+- Teleports work in Test/Team Test without publishing (`roblox-teleport-matchmaking`).
+- Team Test shows collaborators' client output in the Output window; read it with `LogService:GetLogHistoryAsync`.
 - DataStores in Studio: enable API access and use a separate test universe or data store names.
 
 ## QA checklist before shipping a feature

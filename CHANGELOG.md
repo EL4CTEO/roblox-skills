@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.3 — 2026-11-17
+
+Updated for Roblox releases from November 3 to November 17, 2026 (Studio 0.747).
+
+- **Fixes**: Rojo pin is now 7.7.1, which Studio's new Content asset format needs. Server-authority `AnimationTrack`s now
+  survive reconciliation (the "don't cache tracks" advice is gone). `PlayerCharacterDestroyBehavior` is on by default.
+- **Luau**: `buffer.readvectorf32x2/x3` and `writevectorf32x2/x3`, `SerializationService:SerializeValue`, smarter `--!native`,
+  and the `while local` and Luau Modularity (`export`, cyclic requires) betas.
+- **Teleports**: test `TeleportAsync` in Studio without publishing, and `DataModel.ServerRegion`.
+- **Studio MCP**: `open_cloud_invoke`, per-game MCP permissions, and the new Roblox skills for Open Cloud and asset import.
+- **UI and audio**: `Color3` contrast helpers, linear-space color tweens, `AudioStreamReader`/`AudioStreamWriter`,
+  and `VideoFrame.SubtitlesChanged`.
+- **Other**: Ban Lists, timed options retired, MemoryStore `UpdateAsync` retries, asset versioning and `*Content`
+  properties, a 500-stud minimum draw distance, Journeys and new experiment metrics, and Team Test client logs.
+
 ## 1.1.2 — 2026-11-03
 
 Updated for Roblox releases from October 19 to November 3, 2026 (Studio 0.745).

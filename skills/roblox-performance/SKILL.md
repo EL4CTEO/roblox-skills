@@ -84,6 +84,8 @@ end)
 - Lights: limit shadow-casting `PointLight`/`SpotLight`/`SurfaceLight`; limit `ParticleEmitter.Rate`
   and particle size (overdraw); `Beam`/`Trail` counts.
 - Textures/images: reuse, keep resolutions reasonable (1024² max for most); `SurfaceAppearance` sparingly.
+- The lowest graphics quality now draws at least 500 studs (was 200): budget distant detail with that in
+  mind and test at Studio Settings → Rendering → Editor Quality Level 1.
 - Enable streaming (`roblox-architecture`), `Model.LevelOfDetail = SLIM` for static models, and let
   `StreamOutBehavior = Opportunistic` free memory.
 

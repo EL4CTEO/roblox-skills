@@ -103,6 +103,12 @@ return teleportToNewMatch
 4. On arrival, `TeleportService:SetTeleportGui(gui)` (client, before teleport) keeps a loading screen
    up across the transition; use `ReplicatedFirst` loading screens on arrival.
 
+## Testing teleports in Studio
+
+`TeleportAsync` works in Studio **Test** and **Team Test** without publishing, for every supported teleport
+type and with no code changes. Studio tools (server view, Device Simulator, debugger) and MCP playtest
+automation carry over across the teleport. Its players parameter is typed `{Player}` under `--!strict`.
+
 ## Detecting server type
 
 | Server | `game.PrivateServerId` | `game.PrivateServerOwnerId` |
@@ -110,6 +116,9 @@ return teleportToNewMatch
 | Public | `""` | `0` |
 | Reserved (`ReservedServerId`) | non-empty (the GUID) | `0` |
 | Private (VIP) server | non-empty | owner's user id |
+
+`game.ServerRegion` is the IATA code of the hosting datacenter (e.g. `"IAD"`, `"SYD"`) for region-aware
+matchmaking and analytics.
 
 ## Lobby → match flow
 

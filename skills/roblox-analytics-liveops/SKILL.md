@@ -114,14 +114,17 @@ end
   (`GetConfigAsync` ignores targeting). Experiments run 14–60 days, up to two variants plus control; pick a
   goal metric and respect the minimum detectable effect. Manage via Creator Hub or the Open Cloud
   experimentation API (`roblox-open-cloud`). **Early Harm Detection** shows near-real-time playtime, payer
-  conversion, and ARPU (every 5 min) for the first 24 h — stop a harmful variant early.
+  conversion, and ARPU (every 5 min) for the first 24 h — stop a harmful variant early. Metric sets now
+  include **Custom** (up to three metrics from custom, economy, and funnel events) and **Rewarded Video Ads**.
+- **Journeys** (Analytics → Journeys) show branching player paths and where players drop off, beyond linear funnels.
 - Studio testing: `ConfigService:SetTestingValue(key, value)` / `ClearTestingValue`.
 
 ## Badges
 
 `BadgeService:AwardBadgeAsync(userId, badgeId)` (server, `pcall`; skip if `UserHasBadgeAsync` or
 `CheckUserBadgesAsync` already says owned). `AwardBadge`/`UserHasBadge` are deprecated. Badges are
-great onboarding and progression milestones and show on players' profiles.
+great onboarding and progression milestones and show on players' profiles. Rate-limited
+`UserHasBadgeAsync`/`GetBadgeInfoAsync` error with "Too many requests": back off and retry.
 
 ## Experience notifications (re-engagement)
 

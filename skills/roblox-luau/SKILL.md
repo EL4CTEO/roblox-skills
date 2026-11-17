@@ -54,6 +54,10 @@ print(half, list[1], copy.Speed, mid)
 - Numbers are doubles: integers are exact to 2^53. Use `math.floor`/`//` for integer math.
 - `tick()` is discouraged: use `os.clock()` for benchmarks, `workspace:GetServerTimeNow()` for
   synced time across clients/server, `os.time()`/`DateTime.now()` for wall-clock UTC.
+- **Studio betas (not for published code yet):** `if local`/`if const` bindings, now also `while local`/
+  `while const` (fresh narrowed binding per iteration, loop exits on `nil`/`false`); **Luau Modularity**:
+  `export` values/functions/types from a module (exported module tables are frozen) and cyclic requires
+  when every module in the cycle uses `export`. Enable under File → Beta Features before using them.
 
 ## Types (new type solver)
 
@@ -239,6 +243,9 @@ print(vector.magnitude(v), vector.normalize(v), vector.dot(v, vector.one))
 ```
 
 `buffer` is the right tool for compact network payloads, large grids, and binary serialization.
+`buffer.readvectorf32x3(b, offset)` / `buffer.writevectorf32x3(b, offset, v)` (and the `x2` variants, Z = 0)
+move a whole `vector` in one instruction, 2-3× faster than three `readf32`/`writef32` calls.
+`SerializationService:SerializeValue(value)` / `:DeserializeValue(b)` turn a Luau value into a `buffer` and back.
 Standard-library quick reference: [references/stdlib-cheatsheet.md](references/stdlib-cheatsheet.md).
 
 ## Legacy → current (most common mistakes)
@@ -267,7 +274,8 @@ The full deprecation map lives in the `roblox-code-review` skill.
 
 - Measure first (`debug.profilebegin/profileend`, MicroProfiler, Script Profiler).
 - `--!native` at the top of a script, or `@native` on a function, compiles hot numeric code natively.
-  Use it on math-heavy modules, not everywhere (compile time + memory limits). Type annotations help it.
+  Use it on math-heavy modules, not everywhere (compile time + memory limits). Type annotations help it,
+  and since Studio 747 native code also re-specializes hot paths for the types it actually sees.
 - Cache `Instance` lookups and service references outside loops; avoid `FindFirstChild` chains per frame.
 - Build large strings with `table.concat` or `buffer`, not repeated `..` in loops.
 - Reuse `RaycastParams`/`OverlapParams` objects instead of creating them per call.

@@ -191,6 +191,8 @@ with what each granted so a refund can be reversed.
 - Rewarded video rewards must be developer products, not random, and must not harm the player's
   character while the ad plays.
 - Respect age/region restrictions returned by `PolicyService` for ads, social links, and trading.
+- Timed options for avatar items are being retired: `PromptBulkPurchase` rejects `Enum.PurchaseOption.TimedOption`
+  line items and `SearchCatalog` errors on `Enum.SalesTypeFilter.TimedOptions`.
 
 Rewarded video ads, commerce products, Premium/Roblox Plus hooks, US 18+ DevEx rate and age checks:
 [references/ads-and-extras.md](references/ads-and-extras.md).

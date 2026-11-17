@@ -185,7 +185,9 @@ frames ahead and **roll back/resimulate** on mispredictions. Requirements: `Next
 - Clients affect the game only through **Input Actions** (InputContexts parented under the `Player`),
   not `UserInputService` events.
 - Sync custom state through **attributes** on predicted instances, written only inside simulation callbacks.
-- Don't cache `AnimationTrack`s; query `Animator:GetTrackByAnimationId()` each step.
+- `AnimationTrack`s stay valid through reconciliation (Studio 747), but a client-only `Play()` on your own
+  character is undone when server state applies: play gameplay animations from shared simulation code.
+- `Workspace.AuthorityMode` is readable by scripts, so shared modules can branch on it.
 - Read a player's camera on the server with `player:GetCameraState()` (`CFrame`, `FieldOfView`,
   `ViewportSize`); the old camera `InputAction` replication no longer syncs.
 

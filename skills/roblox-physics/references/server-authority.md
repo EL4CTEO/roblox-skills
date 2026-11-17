@@ -74,8 +74,10 @@ return Simulation
   the client's predicted instance is merged with the server's copy. Parent them within the same frame.
 - **Position smoothing**: simulate an invisible object and render a massless, non-collidable visual
   copy that follows it with `TweenService:SmoothDamp` to hide correction snaps.
-- **Animations**: don't cache `AnimationTrack`s (rollback invalidates them); each step, get the live
-  track with `Animator:GetTrackByAnimationId(id)` or load it, and mirror animation logic on both sides.
+- **Animations**: since Studio 747 `AnimationTrack`s survive client reconciliation, so connect to their
+  events once. This covers server-played tracks and predicted plays from shared simulation code. A
+  client-only `Play()` on the player's own character still stops when server state is applied, so play
+  gameplay animations from shared code and mirror animation logic on both sides.
 - **Sounds/VFX**: play effects from predicted state carefully — they may need to be cancelled if the
   prediction is rolled back; trigger irreversible effects from confirmed (server) state.
 - **Other players' inputs** can't be known in advance; design mechanics tolerant of small corrections

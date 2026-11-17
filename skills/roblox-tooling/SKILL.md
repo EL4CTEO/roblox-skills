@@ -22,7 +22,7 @@ Studio plugin (sends the DataModel tree so requires and instance paths type-chec
 ```toml
 # rokit.toml (commit it; run `rokit install`)
 [tools]
-rojo = "rojo-rbx/rojo@7.7.0"
+rojo = "rojo-rbx/rojo@7.7.1" # 7.7.1+ required: Studio saves asset refs as Content since Nov 11, 2026
 wally = "UpliftGames/wally@0.3.2"
 lune = "lune-org/lune@0.10.5"
 stylua = "JohnnyMorganz/StyLua@2.5.2"

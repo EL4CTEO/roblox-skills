@@ -45,7 +45,14 @@ confirms the connection. Only connect clients you trust: they can read and modif
 | Playtest | `start_stop_play`, `get_console_output`, `screen_capture` (optional camera position/look-at), `character_navigation`, `user_keyboard_input`, `user_mouse_input` |
 | Assets | `search_asset` (Creator Store / inventory), `insert_asset`, `upload_image`, `store_image`, `generate_mesh`, `generate_material`, `generate_procedural_model` + `wait_job_finished` |
 | Delegation | `subagent` (`explore` or `playtest` types for multi-step investigations) |
-| Knowledge | `http_get` (Roblox docs, API reference, Cloud docs), `skill` (Roblox-authored skills: debugging, device simulation, docs search, profiling, scene analysis, unit tests) |
+| Knowledge | `http_get` (Roblox docs, API reference, Cloud docs), `skill` (Roblox-authored skills: debugging, device simulation, docs search, profiling, scene analysis, unit tests, `rbx-open-cloud-usage`, `rbx-permissions`, `rbx-import-asset`) |
+| Open Cloud | `open_cloud_invoke` (any Open Cloud API, no API key; limited to the game's MCP permissions) |
+
+**MCP Permissions** (Assistant → … → Settings → MCP Permissions, or the MCP status in Studio's bottom-right)
+are per user and per game: Open Cloud scopes, upload folders, data/memory store access from `execute_luau`,
+and the HTTP domain allow list. Only the user can turn them on; ask before anything touching money, players,
+secrets, or publishing, and never work around one that is off. Data store calls also need **Enable Studio
+Access to API Services**. Unsaved places can't get an HTTP allow list yet: save to Roblox first.
 
 ## The working loop
 

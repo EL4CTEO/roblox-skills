@@ -47,6 +47,8 @@ The authoritative list with scopes and per-endpoint rate limits is the Open Clou
   Data store budgets are **shared** between Open Cloud and live game servers — throttle bulk scripts so they
   don't starve the game (see `roblox-data-stores`).
 - **Errors**: JSON `{ code, message }`; retry only `429` and `5xx`.
+- **Optional fields**: from Dec 7, 2026 `GetUser` omits `description` when the user restricts their bio;
+  treat missing fields as absent, not as an error.
 - **Legacy web APIs** (cookie or unauthenticated IP): after Oct 19, 2026, limits on the badges, datastores,
   game-persistence, inventory, thumbnails, and users APIs drop sharply (often to 100 requests/min). Open Cloud
   limits don't change: use Open Cloud with an API key for tools and bots, and cache responses.

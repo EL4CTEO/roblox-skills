@@ -135,6 +135,13 @@ return carve
 Team Create) and runtime. Generate from Studio, Assistant, or the Studio MCP (`generate_procedural_model`).
 Creator Store procedural models are sandboxed automatically.
 
+## Asset references
+
+Studio saves asset references as `Content` since Nov 11, 2026. Prefer the `*Content` properties in new code
+(`Sound.AudioContent`, `ImageLabel.ImageContent`, `Trail.TextureContent`); the legacy
+string properties (`SoundId`, `Image`, ...) still work. Rojo must be 7.7.1+ (`roblox-tooling`). From January 19,
+2027, meshes and images can get new versions under the same ID: pin one with `rbxassetid://ID&version=N`.
+
 ## Runtime meshes and images
 
 `AssetService:CreateEditableMesh()` / `CreateEditableMeshAsync(content)` and `CreateEditableImage` enable
@@ -146,6 +153,8 @@ EditableMesh **batch APIs** and parallel queries (released for live games) inste
 Players can publish an `EditableImage` to their inventory from the server with
 `AssetService:PromptCreatePlatformContentAsync(player, image, Enum.AssetType.Image)` (`pcall`; replaces
 `PromptCreateAssetAsync`; needs a published place).
+`EditableMesh` quad faces are released for published games. `AssetService:CreateSurfaceAppearanceAsync`
+also accepts asset IDs and DataModel `Content` (Studio beta: "Mixed Content for CreateSurfaceAppearanceAsync").
 
 ## Effects
 

@@ -179,6 +179,8 @@ print(migrate({ gold = 5, inventory = { "Sword", "Sword" } }))
   after successful processing, invisibility timeout for crash safety).
 - `MemoryStoreHashMap`: high-volume key-value without sorting (`SetAsync`, `GetAsync`, `UpdateAsync`, `ListItemsAsync`).
 - Always set expirations; handle throttling (`pcall` + retry); keep items small.
+- Sorted-map and hash-map `UpdateAsync` retry write conflicts internally (jittered backoff, re-reading the
+  latest value), so the transform function can run several times: keep it pure, no side effects.
 
 ## MessagingService essentials
 

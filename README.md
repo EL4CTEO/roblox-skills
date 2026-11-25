@@ -4,6 +4,7 @@
 
 [![Validate](https://github.com/EL4CTEO/roblox-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/EL4CTEO/roblox-skills/actions/workflows/validate.yml)
 [![Release](https://img.shields.io/github/v/release/EL4CTEO/roblox-skills)](https://github.com/EL4CTEO/roblox-skills/releases)
+[![npm](https://img.shields.io/npm/v/roblox-skills)](https://www.npmjs.com/package/roblox-skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 23 [Agent Skills](https://agentskills.io) that keep AI agents' Roblox code current, secure, and

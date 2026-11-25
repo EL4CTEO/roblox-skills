@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-labelledby="title desc">
+  <title id="title">Roblox Skills</title>
+  <desc id="desc">Agent Skills that keep AI agents' Roblox code current, secure, and correct.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E1B4B"/>
+      <stop offset="0.6" stop-color="#2E1065"/>
+      <stop offset="1" stop-color="#3B0764"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.5" r="0.45">
+      <stop offset="0" stop-color="#6366F1" stop-opacity="0.45"/>
+    </radialGradient>
+    <linearGradient id="spark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="titleFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C7D2FE"/>
+    </linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#A5B4FC" fill-opacity="0.12"/>
+    </pattern>
+    <!-- One isometric block, 64 wide; origin at its top vertex -->
+    <g id="block" stroke="#1E1B4B" stroke-width="2" stroke-linejoin="round">
+      <path d="M0 0 L32 18 L0 36 L-32 18 Z" fill="#C7D2FE"/>
+      <path d="M-32 18 L0 36 L0 72 L-32 54 Z" fill="#818CF8"/>
+      <path d="M0 36 L32 18 L32 54 L0 72 Z" fill="#4F46E5"/>
+    </g>
+    <clipPath id="frame"><rect width="1280" height="360" rx="32"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="360" fill="url(#bg)"/>
+    <rect width="1280" height="360" fill="url(#dots)"/>
+    <rect width="1280" height="360" fill="url(#glow)"/>
+
+    <!-- Block stack (back to front) -->
+    <g transform="translate(1040 92)">
+      <use href="#block" x="0" y="0"/>
+      <use href="#block" x="-64" y="36"/>
+      <use href="#block" x="64" y="36"/>
+      <use href="#block" x="-128" y="72"/>
+      <use href="#block" x="0" y="72"/>
+      <use href="#block" x="128" y="72"/>
+      <use href="#block" x="-64" y="108"/>
+      <use href="#block" x="64" y="108"/>
+      <!-- Hero block with "< >" on its faces -->
+      <g transform="translate(0 144) scale(1.35)">
+        <use href="#block"/>
+        <g fill="none" stroke="#EEF2FF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M-10 40 L-20 46 L-10 54"/>
+          <path d="M10 54 L20 46 L10 40"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- AI sparks -->
+    <path d="M1190 40 C1192 54 1196 58 1210 60 C1196 62 1192 66 1190 80 C1188 66 1184 62 1170 60 C1184 58 1188 54 1190 40 Z" fill="url(#spark)"/>
+    <path d="M1150 74 C1151 81 1153 83 1160 84 C1153 85 1151 87 1150 94 C1149 87 1147 85 1140 84 C1147 83 1149 81 1150 74 Z" fill="#FDE68A"/>
+    <path d="M884 70 C885 76 886.5 77.5 892 78.5 C886.5 79.5 885 81 884 87 C883 81 881.5 79.5 876 78.5 C881.5 77.5 883 76 884 70 Z" fill="#FDE68A" fill-opacity="0.7"/>
+
+    <!-- Text -->
+    <g font-family="'Segoe UI', Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+      <text x="80" y="150" font-size="84" font-weight="800" fill="url(#titleFill)" letter-spacing="-1.5">Roblox Skills</text>
+      <text x="82" y="200" font-size="28" font-weight="500" fill="#C7D2FE">Agent Skills that keep AI-written Roblox code</text>
+      <text x="82" y="236" font-size="28" font-weight="500" fill="#C7D2FE">current, secure, and correct.</text>
+
+      <g font-size="19" font-weight="600" fill="#EEF2FF">
+        <rect x="80" y="270" width="132" height="40" rx="20" fill="#4F46E5" fill-opacity="0.55" stroke="#818CF8" stroke-opacity="0.6"/>
+        <text x="146" y="296" text-anchor="middle">23 skills</text>
+        <rect x="224" y="270" width="190" height="40" rx="20" fill="#4F46E5" fill-opacity="0.55" stroke="#818CF8" stroke-opacity="0.6"/>
+        <text x="319" y="296" text-anchor="middle">CI-verified Luau</text>
+        <rect x="426" y="270" width="160" height="40" rx="20" fill="#4F46E5" fill-opacity="0.55" stroke="#818CF8" stroke-opacity="0.6"/>
+        <text x="506" y="296" text-anchor="middle">70+ agents</text>
+      </g>
+    </g>
+  </g>
+</svg>

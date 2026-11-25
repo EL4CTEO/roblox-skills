@@ -117,7 +117,7 @@ code. Search this file for the member you're looking at. Camel-case aliases (`:f
 | `MarketplaceService:GetProductInfo()` | `GetProductInfoAsync()` |
 | `MarketplaceService:PlayerOwnsAsset()` / `PlayerOwnsBundle()` | `...Async()` variants |
 | `MarketplaceService:PromptPremiumPurchase()` | `PromptRobloxSubscriptionPurchase()` |
-| `GamePassService:PlayerHasPass()` | `MarketplaceService:UserOwnsGamePassAsync()` |
+| `GamePassService:PlayerHasPass()` | `MarketplaceService:GetPassOwnershipAsync()` (`UserOwnsGamePassAsync` still works) |
 | `BadgeService:AwardBadge()` / `UserHasBadge()` / `IsDisabled()` / `IsLegal()` | `AwardBadgeAsync()` / `UserHasBadgeAsync()` / `GetBadgeInfoAsync().IsEnabled` / — |
 | `TeleportService:Teleport`, `TeleportToPlaceInstance`, `TeleportToPrivateServer`, `TeleportPartyAsync`, `TeleportToSpawnByName` | `TeleportService:TeleportAsync()` + `TeleportOptions` |
 | `TeleportService:ReserveServer()` / `ReserveServerAsync()`, `TeleportOptions.ShouldReserveServer` / `ReservedServerAccessCode` | `TeleportOptions.ReservedServerId = HttpService:GenerateGUID(false)` |

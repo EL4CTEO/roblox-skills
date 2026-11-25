@@ -41,6 +41,9 @@ model:PivotTo(CFrame.new(0, 10, 0) * CFrame.Angles(0, math.rad(45), 0))
 - Materials: `Enum.Material.*`; custom looks via `MaterialVariant` in `MaterialService` (set
   `part.MaterialVariant = "Name"`) or `SurfaceAppearance` on MeshParts (PBR). `Decal.Texture` is
   superseded by `ColorMapContent`.
+- Pixel art: set `ResampleMode = Enum.ResamplerMode.Pixelated` on `SurfaceAppearance`, `Decal`, or `Texture`
+  (not `MeshPart.TextureID`, terrain, or `MaterialVariant`) and upload at original size; these stay uncompressed
+  and fully loaded, so keep them small.
 - Many identical meshes are cheap (instanced); many unique meshes/unions are not.
 
 ## Lighting

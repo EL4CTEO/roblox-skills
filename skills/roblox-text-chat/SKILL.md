@@ -13,7 +13,9 @@ description: Chat and text safety - TextChatService (channels, SendAsync, Should
 2. **Any text authored by one player and shown to another** (pet names, signs, guild names, trade notes,
    custom UI) must be filtered with `TextService:FilterStringAsync` on the server before display — and
    re-filtered when loaded from a DataStore later.
-3. Editable text others can see (signs, bulletin boards) needs a rate limit of at least 1 minute.
+3. Editable text others can see (signs, bulletin boards) needs a rate limit of at least 1 minute (one
+   submission per player per 60 seconds). Enforced from December 3, 2026: filtering APIs used for
+   back-and-forth player chat outside `TextChannel`s get temporary limits.
 4. Respect privacy settings with `CanUserChatAsync`/`CanUsersChatAsync`/`CanUsersDirectChatAsync` and mark
    direct-message channels with `TextChannel:SetDirectChatRequester()`.
 

@@ -54,11 +54,16 @@ player:Play()
   wire `AudioListener → AudioDeviceOutput` (done automatically in default setups).
 - Distance falloff and directionality are set on the emitter/listener (`AudioEmitter:SetDistanceAttenuation`,
   the `AudioInteractionGroup` string property on emitters and listeners scopes who hears what).
-- **Acoustic simulation** (fully released; Audio API only, not `Sound` yet): set
+- **Acoustic simulation** (fully released for the Audio API; `Sound` support is a Studio beta, see below): set
   `SoundService.AcousticSimulationEnabled = true` (in Studio) and 3D audio is muffled by walls, bends around
   corners, and reverbs in rooms. Per part: `BasePart.AudioCanCollide` (false = doesn't block sound); thicker and
   denser parts muffle more. Per emitter/listener: `AcousticSimulationEnabled`. Set
   `SoundService.CharacterSoundsUseNewApi` so character sounds are simulated too. Quality scales down on weak devices.
+- **`Sound` + acoustic simulation** (Studio beta, Nov 2026: File → Beta Features → **Sounds Use Wiring**):
+  `Sound`s are rebuilt as `AudioPlayer` + `AudioEmitter` internally, so `AcousticSimulationEnabled` applies with
+  no migration; opt individual sounds out with `Sound.AcousticSimulationEnabled = false`. Every part blocks sound
+  by default: set `AudioCanCollide = false` on decoration and invisible walls that muffle unexpectedly, and tune
+  restyled materials with `PhysicalProperties.AudioAbsorption` (reverb) and `Density` (occlusion).
 
 ## Classic Sound quick reference
 

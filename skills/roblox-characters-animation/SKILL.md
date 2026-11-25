@@ -127,6 +127,11 @@ return playAttack
   (`animate.run.RunAnim.AnimationId`) on `CharacterAdded`, or ship a custom `Animate` in
   `StarterCharacterScripts`.
 - Procedural: `IKControl` (look-at, foot planting, reaching) instead of hand-written joint math.
+- **Animation Graphs** (Animation Graph Editor): blend and switch animations from parameters set with
+  `track:SetParameter(name, value)`. **State Machine** nodes (fully released Nov 2026, live games and server
+  authority) track the current state and allowed transitions (Wait For an expression or Finished; `(Any)` state
+  for interrupts like holstering), so combos and locomotion need no state-tracking script. **Expression** nodes
+  hold one line of Luau math (`math.*`, comparisons, `if` expressions; no loops, tables, calls, or DataModel).
 
 ## Tweening
 

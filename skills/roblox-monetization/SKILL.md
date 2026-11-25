@@ -1,6 +1,6 @@
 ---
 name: roblox-monetization
-description: Robux monetization - developer products with idempotent ProcessReceipt, passes, subscriptions, rewarded video ads, personalized shops, regional pricing and trade arbitrage, paid random item policy (PolicyService), commerce products, private servers, Roblox Plus, refunds, age checks and the US 18+ rate. Use when adding purchases, shops, game passes, subscriptions, ads, or loot boxes, or debugging lost/duplicated purchases.
+description: Robux monetization - developer products with idempotent ProcessReceipt, passes, pass free trials, subscriptions, rewarded video ads, personalized shops, regional pricing and trade arbitrage, paid random item policy (PolicyService), commerce products, private servers, Roblox Plus, refunds, age checks and the US 18+ rate. Use when adding purchases, shops, game passes, subscriptions, ads, or loot boxes, or debugging lost/duplicated purchases.
 ---
 
 # Roblox monetization
@@ -10,7 +10,7 @@ description: Robux monetization - developer products with idempotent ProcessRece
 | Type | Buy | Use for | Grant via |
 | --- | --- | --- | --- |
 | Developer product | Repeatedly | Currency, consumables, boosts, revives | `MarketplaceService.ProcessReceipt` (server) |
-| Pass | Once, permanent | VIP, permanent perks, extra slots | `UserOwnsGamePassAsync` check on join + purchase-finished event |
+| Pass | Once, permanent (or a free trial) | VIP, permanent perks, extra slots | `GetPassOwnershipAsync` check on join + purchase-finished event |
 | Subscription | Monthly, revocable | Recurring perks (daily currency, VIP) | `GetUserSubscriptionStatusAsync` + `UserSubscriptionStatusChanged` |
 | Rewarded video ad | Free (watch ad) | Small rewards (≈3–10 Robux value) | Developer product granted through `ProcessReceipt` |
 | Commerce product | Real money (physical goods) | Merch with bundled digital benefits | `CommerceService`; digital benefits via `ProcessReceipt` |
@@ -127,9 +127,10 @@ local function grantVip(player: Player)
 end
 
 local function checkPass(player: Player)
-	local ok, owns = pcall(MarketplaceService.UserOwnsGamePassAsync, MarketplaceService, player.UserId, VIP_PASS_ID)
-	if ok and owns then
-		grantVip(player)
+	-- { Owned, Active, StartTime?, EndTime? }: Active = owned OR in a free trial right now.
+	local ok, status = pcall(MarketplaceService.GetPassOwnershipAsync, MarketplaceService, player, VIP_PASS_ID)
+	if ok and status.Active then
+		grantVip(player) -- session perks only; grant permanent items/currency only when status.Owned
 	end
 end
 
@@ -138,7 +139,7 @@ for _, player in Players:GetPlayers() do
 	task.spawn(checkPass, player)
 end
 
--- Fires on the server too; re-verify ownership rather than trusting `purchased` alone.
+-- Fires on the server too (also when a free trial starts); re-verify rather than trusting `purchased`.
 MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(player, passId, purchased)
 	if purchased and passId == VIP_PASS_ID then
 		checkPass(player)
@@ -146,7 +147,15 @@ MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(player, passI
 end)
 ```
 
-`UserOwnsGamePassAsync` results are cached per server; the purchase-finished handler covers in-session buys.
+`GetPassOwnershipAsync` replaces `UserOwnsGamePassAsync` (which still works and returns `Active`). On the
+client it can only query `LocalPlayer`.
+
+**Pass free trials** (live December 2, 2026; opt in per pass in Creator Hub → Monetization → Shop → Free
+Trials, or via Open Cloud): players get a pass's benefits for one session. Starting a trial fires
+`PromptGamePassPurchaseFinished(player, passId, true)`, and no event fires when it ends. So:
+- Grant anything permanent (currency, items, saved data) only when `GetPassOwnershipAsync(...).Owned` is true.
+- Don't cache ownership for the whole session; re-check `Active` when it matters.
+- Trials work in Studio playtests (≥ 10 minutes, redeemable repeatedly).
 
 ## Subscriptions
 

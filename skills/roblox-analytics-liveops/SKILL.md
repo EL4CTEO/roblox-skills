@@ -148,6 +148,7 @@ great onboarding and progression milestones and show on players' profiles. Rate-
   measurement pipeline from Oct 12, 2026 (higher counts, slightly lower play-through rate) — don't read the
   jump as a real change.
 - **Before launch**: invite up to 10 friends or group members as early testers from the publish flow.
+  Reaching Kids and Select audiences needs 100 Highly Engaged Players (was 250; Publish Settings → Manage Audience).
 - **Player Support** (early access, age-checked 13+): add an in-game "report a problem" button that calls
   `SocialService:PromptFeedbackSubmissionAsync({ FeedbackType = Enum.FeedbackType.PlayerSupport })`
   (client, `pcall`); reports arrive with device info and screenshots in Creator Hub → Audience → Player Support.

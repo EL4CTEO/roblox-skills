@@ -42,7 +42,8 @@ confirms the connection. Only connect clients you trust: they can read and modif
 | Explore | `search_game_tree` (filter by path/class/keyword, depth), `inspect_instance` (properties, attributes, children), `script_search` (fuzzy by name), `script_grep` (text across scripts, ≤ 50 hits), `script_read` (dot path like `game.ServerScriptService.Main`, line ranges) |
 | Edit | `multi_edit` (several edits to one script, creates it if missing; `datamodel_type = Edit`) |
 | Run | `execute_luau` (`datamodel_type` = `Edit`, `Server`, or `Client`; returns the result or error) |
-| Playtest | `start_stop_play`, `get_console_output`, `screen_capture` (optional camera position/look-at), `character_navigation`, `user_keyboard_input`, `user_mouse_input` |
+| Playtest | `start_stop_play`, `get_console_output`, `screen_capture` (screenshot, optional camera position/look-at, or video during play), `character_navigation`, `user_keyboard_input`, `user_mouse_input` |
+| Save and report | `save_place` (Ctrl+S with a version-history note; never publishes), `submit_feedback` (reports MCP tool problems to Roblox; tell the user each time) |
 | Assets | `search_asset` (Creator Store / inventory), `insert_asset`, `upload_image`, `store_image`, `generate_mesh`, `generate_material`, `generate_procedural_model` + `wait_job_finished` |
 | Delegation | `subagent` (`explore` or `playtest` types for multi-step investigations) |
 | Knowledge | `http_get` (Roblox docs, API reference, Cloud docs), `skill` (Roblox-authored skills: debugging, device simulation, docs search, profiling, scene analysis, unit tests, `rbx-open-cloud-usage`, `rbx-permissions`, `rbx-import-asset`) |
@@ -66,8 +67,11 @@ Access to API Services**. Unsaved places can't get an HTTP allow list yet: save 
    (`require` the module in `Edit` and call functions).
 5. **Playtest**: `start_stop_play` (start) → wait → `get_console_output` for errors → drive the scenario
    with `character_navigation` / input tools → `execute_luau` in `Server`/`Client` to assert state →
-   `screen_capture` for visual checks → `start_stop_play` (stop). Always stop play when done.
-6. **Report** what changed and what was verified (and what wasn't).
+   `screen_capture` for visual checks (screenshots by default; record video only for motion, flicker, or
+   timing) → `start_stop_play` (stop). Always stop play when done.
+6. **Save** with `save_place` and a short note when the user asks or the requested change is done (a place
+   that was never saved needs one manual save first).
+7. **Report** what changed and what was verified (and what wasn't).
 
 ```luau
 -- Example execute_luau (Server context during play): assert game state instead of eyeballing.

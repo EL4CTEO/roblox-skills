@@ -66,7 +66,10 @@ return safeTeleport
 - `VipServerId = id` → a player's **VIP server** (its `game.PrivateServerId`), usable with any place in the
   experience. Carry the id in teleport data to keep a VIP group private across places (VIP → match → VIP);
   handle `TeleportInitFailed` (server closed, full, or player not allowed).
-- `ServerInstanceId = jobId` → a specific public server (e.g. "join friend's server").
+- `ServerInstanceId = jobId` → a specific public server (e.g. "join friend's server"). Find friends with
+  `LocalPlayer:GetFriendsInUniverseAsync()` (client, `LocalPlayer` only) → `{ User, PlaceId, GameId }`, where
+  `GameId` is the JobId string; `Player:GetFriendsInServerAsync()` returns friends' `Player`s in this server.
+  `pcall` both; hidden online status means they're omitted.
 - `SetTeleportData(table)` → non-secure data readable on arrival with `player:GetJoinData().TeleportData`
   (server) or `TeleportService:GetLocalPlayerTeleportData()` (client). **Clients can tamper with it**:
   never trust it for currency, items, or permissions — use DataStores/MemoryStores keyed by user ID

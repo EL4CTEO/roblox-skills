@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/logo.svg" alt="Roblox Skills logo" width="128" height="128"></p>
+<p align="center"><img src="assets/banner.svg" alt="Roblox Skills: Agent Skills that keep AI-written Roblox code current, secure, and correct" width="100%"></p>
 
 # Roblox Skills for AI Agents
 
@@ -11,7 +11,7 @@ correct. They work with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, GitHub
 Cline, Roo Code, Kiro, Goose, Amp, JetBrains Junie, and [many more](docs/agents.md), plus Roblox
 Studio Assistant.
 
-- **Current**: checked against Roblox's API reference (Studio 0.743, October 2026). No `wait()`,
+- **Current**: checked against Roblox's API reference (Studio 0.748, November 2026). No `wait()`,
   `BodyVelocity`, or legacy `Chat`.
 - **Verified**: CI type-checks every Luau example against the Roblox API (strict mode, new type solver)
   and flags deprecated APIs. A weekly run catches new deprecations.
@@ -44,6 +44,8 @@ git clone https://github.com/EL4CTEO/roblox-skills.git && cd roblox-skills
 
 [docs/agents.md](docs/agents.md) lists every agent id and folder. Add `--link` to symlink the skills
 so `git pull` updates them. On Windows, use `scripts\install.ps1 -Agent windsurf`.
+
+**npm**: `npm i -D roblox-skills` puts the skills in `node_modules/roblox-skills/skills`.
 
 **Roblox Studio Assistant**: download `roblox-assistant-skills.zip` from the
 [latest release](https://github.com/EL4CTEO/roblox-skills/releases/latest), or run

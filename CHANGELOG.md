@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.4 — 2026-11-25
+
+Updated for Roblox releases from November 17 to November 25, 2026 (Studio 0.748).
+
+- **Monetization**: pass free trials (live December 2) and `GetPassOwnershipAsync` (`Owned` vs `Active`).
+  Grant permanent rewards only when `Owned`.
+- **Studio MCP**: `screen_capture` video, `save_place`, and `submit_feedback`.
+- **Animation**: State Machine and Expression nodes in Animation Graphs are fully released.
+- **Social**: `GetFriendsInServerAsync` and `GetFriendsInUniverseAsync` for friend lists and join-friend teleports.
+- **Visuals and audio**: `ParticleEmitter2D` UI particles (beta), `Pixelated` resampling on 3D surfaces, and
+  acoustic simulation for `Sound` (beta).
+- **Other**: player-text rate limits enforced from December 3, and a 100 Highly Engaged Player threshold.
+- README: new banner.
+
 ## 1.1.3 — 2026-11-17
 
 Updated for Roblox releases from November 3 to November 17, 2026 (Studio 0.747).

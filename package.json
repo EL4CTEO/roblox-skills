@@ -1,0 +1,24 @@
+{
+  "name": "roblox-skills",
+  "version": "1.1.4",
+  "description": "23 validated, up-to-date Agent Skills for Roblox development: Luau, architecture, networking, security, data stores, monetization, UI, physics, NPC AI, performance, tooling, testing, Open Cloud, Studio MCP, and more.",
+  "keywords": ["roblox", "luau", "roblox-studio", "agent-skills", "claude-code", "codex", "cursor", "ai-agents"],
+  "homepage": "https://github.com/EL4CTEO/roblox-skills#readme",
+  "bugs": "https://github.com/EL4CTEO/roblox-skills/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EL4CTEO/roblox-skills.git"
+  },
+  "license": "MIT",
+  "author": "EL4CTEO",
+  "files": [
+    "skills",
+    "scripts/install.sh",
+    "scripts/install.ps1",
+    "scripts/agents.tsv",
+    "docs/agents.md",
+    "assets/banner.svg",
+    "assets/banner.png",
+    "CHANGELOG.md"
+  ]
+}

@@ -32,6 +32,7 @@ description: Responsive cross-platform UI - ScreenGui and safe areas (ScreenInse
 | Rounded corners, borders, padding | `UICorner`, `UIStroke`, `UIPadding` |
 | Gradients, shadows | `UIGradient` (`Type` = `Linear`/`Radial`/`Conical`/`Elliptical`), `UIShadow` |
 | Scale a whole group | `UIScale` |
+| UI particles (sparkles, coin bursts) | `ParticleEmitter2D` under any `GuiObject` (Studio beta, Nov 2026: can't publish yet; `Emit(n)`, flipbooks, `EmissionMode`, `Speed`/`Acceleration`/`Drag`) |
 
 ```luau
 --!strict

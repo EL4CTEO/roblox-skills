@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/banner.svg" alt="Roblox Skills: Agent Skills that keep AI-written Roblox code current, secure, and correct" width="100%"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/EL4CTEO/roblox-skills/main/assets/banner.svg" alt="Roblox Skills: Agent Skills that keep AI-written Roblox code current, secure, and correct" width="100%"></p>
 
 # Roblox Skills for AI Agents
 
@@ -7,17 +7,11 @@
 [![npm](https://img.shields.io/npm/v/roblox-skills)](https://www.npmjs.com/package/roblox-skills)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-23 [Agent Skills](https://agentskills.io) that keep AI agents' Roblox code current, secure, and
-correct. They work with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, GitHub Copilot, Windsurf,
-Cline, Roo Code, Kiro, Goose, Amp, JetBrains Junie, and [many more](docs/agents.md), plus Roblox
-Studio Assistant.
+23 [Agent Skills](https://agentskills.io) that keep AI-written Roblox code current, secure and correct. Works with Claude Code, Codex, Cursor, OpenCode, Gemini CLI, Copilot, Windsurf, Cline and [many more](docs/agents.md), plus Roblox Studio Assistant.
 
-- **Current**: checked against Roblox's API reference (Studio 0.748, November 2026). No `wait()`,
-  `BodyVelocity`, or legacy `Chat`.
-- **Verified**: CI type-checks every Luau example against the Roblox API (strict mode, new type solver)
-  and flags deprecated APIs. A weekly run catches new deprecations.
-- **Efficient**: agents see only a short description per skill (~150 tokens) and load the full skill
-  on demand.
+- **Current**: checked against the Roblox API reference (Studio 0.748, November 2026). No `wait()`, `BodyVelocity` or legacy `Chat`.
+- **Verified**: CI type-checks every Luau example (strict mode, new type solver) and flags deprecated APIs weekly.
+- **Light**: agents see ~150 tokens per skill and load the full skill only when needed.
 
 ## Install
 
@@ -43,14 +37,11 @@ git clone https://github.com/EL4CTEO/roblox-skills.git && cd roblox-skills
 ./scripts/install.sh --agent windsurf --global     # or claude, roo, kiro, goose, junie, qwen, ...
 ```
 
-[docs/agents.md](docs/agents.md) lists every agent id and folder. Add `--link` to symlink the skills
-so `git pull` updates them. On Windows, use `scripts\install.ps1 -Agent windsurf`.
+Every agent id and folder: [docs/agents.md](docs/agents.md). `--link` symlinks so `git pull` updates them. Windows: `scripts\install.ps1 -Agent windsurf`.
 
 **npm**: `npm i -D roblox-skills` puts the skills in `node_modules/roblox-skills/skills`.
 
-**Roblox Studio Assistant**: download `roblox-assistant-skills.zip` from the
-[latest release](https://github.com/EL4CTEO/roblox-skills/releases/latest), or run
-`python3 scripts/build-assistant.py`. Then paste a file into **Assistant → Settings → Skills → Add**.
+**Roblox Studio Assistant**: get `roblox-assistant-skills.zip` from the [latest release](https://github.com/EL4CTEO/roblox-skills/releases/latest) (or `python3 scripts/build-assistant.py`), then paste a file into **Assistant → Settings → Skills → Add**.
 
 ## Skills
 
@@ -62,9 +53,7 @@ so `git pull` updates them. On Windows, use `scripts\install.ps1 -Agent windsurf
 | Presentation | `roblox-ui`, `roblox-audio`, `roblox-world-building`, `roblox-text-chat` |
 | Scale and workflow | `roblox-performance`, `roblox-teleport-matchmaking`, `roblox-tooling`, `roblox-testing`, `roblox-studio-mcp` |
 
-Each skill lives in [`skills/`](skills/). For best results, also connect your agent to Studio's
-built-in MCP server (see [`roblox-studio-mcp`](skills/roblox-studio-mcp/SKILL.md)) so it can playtest
-and verify its changes.
+For best results also connect your agent to Studio's MCP server ([`roblox-studio-mcp`](skills/roblox-studio-mcp/SKILL.md)) so it can playtest and verify its changes.
 
 ## Contributing
 
